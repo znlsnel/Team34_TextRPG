@@ -8,10 +8,12 @@ namespace Team34_TextRPG
 {
 	public class Lobby : Scene
 	{
+		Town town = new Town();
 		public Lobby() : base("로비"){}
-
+		
 		public override void EnterScene()
 		{
+			Console.Clear();
 			Console.WriteLine("게임에 접속하신 것을 환영합니다.");
 			Console.WriteLine("아래의 기능들 중 하나를 선택해 주세요.");
 			Console.WriteLine();
@@ -43,6 +45,27 @@ namespace Team34_TextRPG
 			Console.WriteLine();
 			Console.Write("아이디 입력 : ");
 			string id = Console.ReadLine();
+			 
+			Console.Clear();
+			if (DataManager.instance.LoadFile(id))
+			{
+				Console.WriteLine("저장된 파일을 찾았습니다!");
+				Console.WriteLine("1. 게임 시작");
+				Console.WriteLine("0. 나가기");
+				 
+				int value = SpartaRPG.SelectOption(0, 1);
+				if (value == 1)
+					town.EnterTown();
+				
+			} 
+			else
+			{
+				Console.WriteLine("파일을 찾지 못했습니다...");
+				Console.WriteLine("0. 나가기");
+				SpartaRPG.SelectOption();
+			}
+
+
 		} 
 		
 	}

@@ -15,7 +15,10 @@ namespace Team34_TextRPG
 
 		public void EnterTown()
 		{
+            Console.WriteLine("마을");
+			Console.WriteLine("0. 나가기");
+			SpartaRPG.SelectOption();
 
-		}
+        }
 	}
 }
