@@ -10,8 +10,6 @@ namespace Team34_TextRPG
 {
 	public partial class DataManager
 	{
-		public InventoryData inventory = new InventoryData();
-
 		string GetSavePath(string id) => $"TextRPG_{id}";
 
 		public void Savefile()
