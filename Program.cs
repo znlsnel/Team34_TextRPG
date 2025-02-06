@@ -8,6 +8,6 @@ class Program
 
 		SpartaRPG game = new SpartaRPG();
 		game.GameStart();
-	}	
+    }	
 
 }
