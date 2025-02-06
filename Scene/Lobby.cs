@@ -29,11 +29,13 @@ namespace Team34_TextRPG
 			switch(value)
 			{
 				case 1: // 캐릭터 생성씬과 연결
+					town.EnterTown();
 					break;
 				case 2:
 					LoadData();
 					break;
 			}
+
 			EnterScene();
 		}
 
