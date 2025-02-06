@@ -16,9 +16,14 @@ namespace Team34_TextRPG
 
         public partial class DataManager
         {
-		void START()
-                {
+                public static DataManager instance;
+                public PlayerData playerData;
+                
 
+                public DataManager()
+                {
+                        if (instance == null)
+                                instance = this;
                 }
 
         }

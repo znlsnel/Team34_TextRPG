@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Team34_TextRPG
 {
-	internal class Scene
+	public abstract class Scene
 	{
-
+		public string name;
+		public Scene(string name) => this.name = name;
+		public abstract void EnterScene();
 	}
 }
