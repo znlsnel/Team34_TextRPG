@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Team34_TextRPG
 {
-	internal class Scene
-	{
+    public partial class DataManager
+    {
+		
+    }
 
-	}
+
 }

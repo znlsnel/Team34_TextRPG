@@ -8,6 +8,8 @@ namespace Team34_TextRPG
 {
     public partial class DataManager
     {
-         
+		
     }
+
+
 }
