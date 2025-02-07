@@ -25,7 +25,7 @@ namespace Team34_TextRPG
 
 			foreach (var item in myItems)
 				list.Add(DataManager.instance.items[item]);
-		 
+
 			return list;
 		}
 		public bool IsEquipped(Item item)

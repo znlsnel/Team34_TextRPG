@@ -54,11 +54,14 @@ namespace Team34_TextRPG
 			if (items.Count == 0)
 			{
 				Console.WriteLine("소지중인 아이템이 없습니다!");
+				Console.WriteLine();
+				Console.WriteLine("0. 나가기");
+				SpartaRPG.SelectOption();
+				return;
 			}
-			else if (equipMode == false)
-			{
+
+			 if (equipMode == false)
 				Console.WriteLine("1. 장착");
-			} 
 			
 			Console.WriteLine("0. 나가기");
 
@@ -66,6 +69,7 @@ namespace Team34_TextRPG
 			if (value == 0)
 				return;
 
+			// 장착모드가 false이고 value가 0이 아니라면 장착 모드로 다시 실행
 			if (equipMode == false)
 			{
 				OpenInventory(true);
@@ -73,6 +77,7 @@ namespace Team34_TextRPG
 			}
 
 			DataManager.instance.inventory.EquipItem(items[value - 1]);
+			OpenInventory(equipMode);
 		}
 
 	}

@@ -24,7 +24,10 @@ namespace Team34_TextRPG
                 {
                         if (instance == null)
                                 instance = this;
-                }
+
+                        InitItem();
+
+		}
 
         }
 }
