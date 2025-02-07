@@ -23,11 +23,9 @@ namespace Team34_TextRPG
 		{
 			List<Item> list = new List<Item>();
 
-			// TODO
-			// Dictionary로 저장된 아이템 목록에 접속 후 리스트에 담기
-			//foreach (var item in myItems)
-		//		list.Add()
-		 
+			foreach (var item in myItems)
+				list.Add(DataManager.instance.items[item]);
+
 			return list;
 		}
 		public bool IsEquipped(Item item)
