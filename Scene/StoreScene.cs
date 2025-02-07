@@ -13,15 +13,18 @@ namespace Team34_TextRPG
 
 		public override void EnterScene()
 		{
+			Console.Clear();
 			Console.WriteLine("[상점]");
 			Console.WriteLine("이곳에서 아이템을 구매할 수 있습니다.");
 
 			List<Item> items = DataManager.instance.GetItems();
 			ShowItemList(items, false);
 
+			Console.WriteLine();
 			Console.WriteLine("1. 아이템 구매");
 			Console.WriteLine("2. 아이템 판매");
 
+			Console.WriteLine();
 			Console.WriteLine("0. 나가기");
 			int value = SpartaRPG.SelectOption(0, 2);
 
@@ -45,6 +48,7 @@ namespace Team34_TextRPG
 			List<Item> items = DataManager.instance.GetItems();
 			PlayerData pd =  DataManager.instance.playerData;
 
+			Console.Clear();
 			Console.WriteLine("[상점 - 아이템 구매]");
 			Console.WriteLine("이곳에서 아이템을 구매할 수 있습니다.");
 			ShowItemList(items, true);
@@ -65,6 +69,7 @@ namespace Team34_TextRPG
 
 			pd.gold -= item.price;
 			DataManager.instance.inventory.AddItem(item);
+			OpenStore();
 		}
 
 		void OnPurchaseFailed(Item item)
