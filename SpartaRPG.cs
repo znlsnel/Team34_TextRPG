@@ -13,6 +13,7 @@ namespace Team34_TextRPG
 
 	public class SpartaRPG
 	{
+		PlayerCreateScene scene = new PlayerCreateScene();
 		Town town = new Town();
 		public void GameStart()
 		{
@@ -30,7 +31,7 @@ namespace Team34_TextRPG
 			}	
 			else if (value == 1)
 			{
-
+				scene.CreatePlayer();
 			}
 			else if (value == 2)
 			{
