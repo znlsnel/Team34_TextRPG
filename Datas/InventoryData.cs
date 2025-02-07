@@ -51,5 +51,10 @@ namespace Team34_TextRPG
 			}
 		}
 
+		public void AddItem(Item item)
+		{
+			myItems.Add(item.name);
+		}
+
 	}
 }
