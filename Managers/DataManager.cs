@@ -17,7 +17,7 @@ namespace Team34_TextRPG
         public partial class DataManager
         {
                 public static DataManager instance;
-                public PlayerData playerData = new PlayerData("sad", 1, EClassType.WARRIOR, 1, 1, 200, 20000);
+                public PlayerData playerData = new PlayerData("sad", 1, EClassType.WARRIOR, 30, 30, 200, 20000);
                 
 
                 public DataManager()

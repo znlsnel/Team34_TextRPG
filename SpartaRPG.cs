@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,6 +46,20 @@ namespace Team34_TextRPG
 			}
 
 			return ret;
+		}
+
+		public static void WriteLine(string str, ConsoleColor color)
+		{
+			Console.ForegroundColor = color; 
+			Console.WriteLine(str);
+			Console.ForegroundColor = ConsoleColor.White;
+		}
+
+		public static void Write(string str, ConsoleColor color)
+		{
+			Console.ForegroundColor = color;
+			Console.Write(str);
+			Console.ForegroundColor = ConsoleColor.White;
 		}
 	}
 }
