@@ -9,7 +9,7 @@ namespace Team34_TextRPG
 {
     public partial class DataManager
     {
-        Dictionary<string, Item> items = new Dictionary<string, Item>();
+        public Dictionary<string, Item> items = new Dictionary<string, Item>();
     
         public List<Item> GetItems()
         {
