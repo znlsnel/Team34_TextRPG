@@ -6,17 +6,20 @@ using System.Threading.Tasks;
 
 namespace Team34_TextRPG
 {
-	public class PlayerData
+	public abstract class Character
 	{
-		public EClassType classType;
 		public string name;
-
 		public int level;
 		public int attack;
-		public int defense;
 
+		public int defense;
 		public int maxHp;
 		public int hp;
+	}
+
+	public class PlayerData : Character
+	{
+		public EClassType classType;
 
 		public int gold;
 
@@ -34,6 +37,18 @@ namespace Team34_TextRPG
 			this.maxHp = maxHp;
 			this.hp = maxHp;
 			this.gold = gold;
+		}
+	}
+
+	public class Monster : Character
+	{
+		public Monster(string name, int level, int attack, int hp)
+		{
+			this.name = name;
+			this.level = level;
+			this.attack = attack;
+			this.maxHp = hp;
+			this.hp = hp;
 		}
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,39 +11,15 @@ namespace Team34_TextRPG
     // 캐릭터 생성, 
     // 저장 데이터 불러오기,
     // 게임 시작
-
+     
 	public class SpartaRPG
 	{
-		PlayerCreateScene scene = new PlayerCreateScene();
-		Town town = new Town();
+
+		Lobby lobby = new Lobby();
+		DataManager dataManager = new DataManager();
 		public void GameStart()
 		{
-			Console.WriteLine("게임에 접속하셨습니다.");
-			Console.WriteLine("1. 새 게임");
-			Console.WriteLine("2. 불러오기");
-			Console.WriteLine();
-			Console.WriteLine("0. 나가기");
-
-			int value = SelectOption(0, 2);
-			if (value == 0)
-			{
-				Console.WriteLine("게임을 종료합니다.");
-				return;
-			}	
-			else if (value == 1)
-			{
-				scene.CreatePlayer();
-			}
-			else if (value == 2)
-			{
-				scene.CreateClass();
-			}
-				
-		}
-
-		public void NewGame()
-		{
-			town.EnterTown();
+			lobby.EnterScene();
 		}
 
 		public static int SelectOption(int min = 0, int max = 0)
@@ -70,6 +47,20 @@ namespace Team34_TextRPG
 			}
 
 			return ret;
+		}
+
+		public static void WriteLine(string str, ConsoleColor color)
+		{
+			Console.ForegroundColor = color; 
+			Console.WriteLine(str);
+			Console.ForegroundColor = ConsoleColor.White;
+		}
+
+		public static void Write(string str, ConsoleColor color)
+		{
+			Console.ForegroundColor = color;
+			Console.Write(str);
+			Console.ForegroundColor = ConsoleColor.White;
 		}
 	}
 }

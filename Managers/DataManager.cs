@@ -17,14 +17,17 @@ namespace Team34_TextRPG
         public partial class DataManager
         {
                 public static DataManager instance;
-                public PlayerData playerData;
+                public PlayerData playerData = new PlayerData("sad", 1, EClassType.WARRIOR, 30, 30, 200, 20000);
                 
 
                 public DataManager()
                 {
                         if (instance == null)
                                 instance = this;
-                }
+
+                        InitItem();
+
+		}
 
         }
 }
