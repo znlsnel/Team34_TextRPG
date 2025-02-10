@@ -35,7 +35,7 @@ namespace Team34_TextRPG
 			}
 			else if (value == 2)
 			{
-
+				scene.CreateClass();
 			}
 				
 		}
