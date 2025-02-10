@@ -16,7 +16,7 @@ namespace Team34_TextRPG
 
 		public override void EnterScene() 
 		{
-			 monsters = DataManager.instance.monsterData.GetMonster(stage);
+			 monsters = DataManager.instance.monsterData.GetMonster(stage-1);
 			playerStartHp = DataManager.instance.playerData.hp;
 			EnterDungeon();
 		}
@@ -150,12 +150,38 @@ namespace Team34_TextRPG
 			SpartaRPG.WriteLine("Battle!!", ConsoleColor.Magenta);
 			Console.WriteLine();
 			SpartaRPG.WriteLine($"{(success ? "Victory" : "You Lose")}", success ? ConsoleColor.DarkGreen : ConsoleColor.DarkRed);
+			Console.WriteLine();
 
 			if (success)
-				Console.WriteLine($"몬스터에서 몬스터 {monsters.Count}마리를 잡았습니다.\n");
+			{
+				Console.WriteLine($"몬스터에서 몬스터 {monsters.Count}마리를 잡았습니다.");
+				Console.WriteLine();
 
-			Console.WriteLine($"HP {playerStartHp} -> {pd.hp}");
-			Console.WriteLine("0. 마을로 돌아가기");
+				int total = 0;
+				foreach (Monster mst in monsters)
+					total += mst.level;
+
+				SpartaRPG.WriteLine($"경험치 {pd.exp} -> {pd.exp + total}", ConsoleColor.Yellow);
+				int prevLevel = pd.level;
+				bool levelUp = pd.AddExp(total);
+				if (levelUp)
+					SpartaRPG.WriteLine($"Level Up ! ! {prevLevel} -> {pd.level}", ConsoleColor.Yellow);
+			}
+
+
+			ConsoleColor color = ConsoleColor.DarkRed;
+			float rate = (float)pd.hp / pd.maxHp;
+			if (rate > 0.8)
+				color = ConsoleColor.Green;
+			else if (rate > 0.5)
+				color = ConsoleColor.Blue;
+			else if (rate > 0.25)
+				color = ConsoleColor.Red;
+			SpartaRPG.WriteLine($"HP {playerStartHp} -> {pd.hp}", color);
+
+
+
+			Console.WriteLine("\n0. 마을로 돌아가기");
 			SpartaRPG.SelectOption(); 
 		}
 

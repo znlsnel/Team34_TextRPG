@@ -46,6 +46,10 @@ namespace Team34_TextRPG
 		public bool AddExp(int e)
 		{
 			exp += e;
+
+			if (level-1 >= requiredExp.Count)
+				return false;
+
 			if (requiredExp[level-1] <= exp)
 			{
 				level++;
