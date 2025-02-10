@@ -110,6 +110,12 @@ namespace Team34_TextRPG
 		
 		void StartBattle(Character attacker, Character target)
 		{
+			Random rand = new Random();
+			int damage = attacker.attack * rand.Next(90, 110) / 100;
+			bool isCritical = rand.Next(0, 100) < 15;
+			if (isCritical)
+				damage *= 16 / 10;
+
 			Console.Clear();
 			SpartaRPG.Write("Battle!!", ConsoleColor.Magenta);
 
@@ -117,15 +123,13 @@ namespace Team34_TextRPG
 				SpartaRPG.WriteLine(" - 플레이어 턴!", ConsoleColor.Green);
 			else
 				SpartaRPG.WriteLine(" - 몬스터 턴!", ConsoleColor.Red);
-			Random rand = new Random();
-			int damage = attacker.attack * rand.Next(90, 110) / 100;
-
+			
 			Console.WriteLine();
 			Console.WriteLine($"Lv.{attacker.level} {attacker.name} 의 공격!");
 
 			SpartaRPG.Write($"{target.name}", attacker is PlayerData ? ConsoleColor.Red: ConsoleColor.Green);
 			Console.Write(" 을(를) 맞췄습니다 "); 
-			SpartaRPG.WriteLine($"[데미지 : {damage}]", attacker is PlayerData ? ConsoleColor.Green : ConsoleColor.Red);
+			SpartaRPG.WriteLine($"[데미지 : {damage}] {(isCritical ? " - 치명타 공격!!" : "")}", attacker is PlayerData ? ConsoleColor.Green : ConsoleColor.Red);
 
 			Console.WriteLine($"\nLv.{target.level} {target.name}");
 
@@ -169,17 +173,18 @@ namespace Team34_TextRPG
 			}
 
 
-			ConsoleColor color = ConsoleColor.DarkRed;
-			float rate = (float)pd.hp / pd.maxHp;
-			if (rate > 0.8)
-				color = ConsoleColor.Green;
-			else if (rate > 0.5)
-				color = ConsoleColor.Blue;
-			else if (rate > 0.25)
-				color = ConsoleColor.Red;
+			ConsoleColor color = ConsoleColor.DarkRed; 
+			{
+				float rate = (float)pd.hp / pd.maxHp;
+				if (rate > 0.8)
+					color = ConsoleColor.Green;
+				else if (rate > 0.5)
+					color = ConsoleColor.Blue;
+				else if (rate > 0.25)
+					color = ConsoleColor.Red;
+			}
+			
 			SpartaRPG.WriteLine($"HP {playerStartHp} -> {pd.hp}", color);
-
-
 
 			Console.WriteLine("\n0. 마을로 돌아가기");
 			SpartaRPG.SelectOption(); 
