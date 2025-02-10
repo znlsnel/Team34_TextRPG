@@ -17,8 +17,9 @@ namespace Team34_TextRPG
 		Scene inventory = new InventoryScene("인벤토리");
 		Scene dungeon = new DungeonScene("ss");
 		Scene recovery = new Recovery();
+        Scene quest = new QuestScene("퀘스트");
 
-		public void EnterTown()
+        public void EnterTown()
 		{
 			Console.Clear();
             Console.WriteLine("이곳은 마을 입니다.");
@@ -29,10 +30,22 @@ namespace Team34_TextRPG
 			Console.WriteLine("3. 상점");
 			Console.WriteLine("4. 던전");
 			Console.WriteLine("5. HP 회복");
-			Console.WriteLine();
+            Console.WriteLine("6. 퀘스트");
+            Console.WriteLine();
 			Console.WriteLine("0. 나가기");
 
-			int value = SpartaRPG.SelectOption(0, 5);
+			int value = SpartaRPG.SelectOption(0, 6);
+
+			if (value == 2)
+				inventory.EnterScene();
+			else if (value == 3)
+				store.EnterScene();
+			else if (value == 4)
+				dungeon.EnterScene();
+			else if (value == 5)
+				recovery.EnterScene();
+			else if (value == 6)
+				quest.EnterScene();
 
 			switch (value)
 			{
@@ -53,7 +66,11 @@ namespace Team34_TextRPG
 				case 5:
 					recovery.EnterScene();
 					break;
+				case 6:
+					quest.EnterScene();
+					break;
 			}
+
 				
 				
 		}
