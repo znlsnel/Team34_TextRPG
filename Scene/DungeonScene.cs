@@ -33,7 +33,10 @@ namespace Team34_TextRPG
 
 				PlayerData pd = DataManager.instance.playerData;
 				if (pd.hp == 0)
+				{
 					ShowResult(false);
+					return;
+				}
 
 				Console.Clear();
 				SpartaRPG.WriteLine("Battle!!", ConsoleColor.Magenta);
@@ -86,8 +89,23 @@ namespace Team34_TextRPG
 			int value = SpartaRPG.SelectOption(0, monsters.Count);
 			if (value == 0)
 				return;
+			
+			while (monsters[value-1].hp <= 0)
+			{
+				Console.WriteLine("\n이미 죽은 몬스터입니다");
+				value = SpartaRPG.SelectOption(0, monsters.Count);
+				if (value == 0)
+					return;
+			}
 
 			StartBattle(pd, monsters[value - 1]);
+
+			foreach (Monster mst in monsters)
+			{
+				if (pd.hp > 0 && mst.hp > 0)
+					StartBattle(mst, pd);
+			}
+			
 		}
 		
 		void StartBattle(Character attacker, Character target)
@@ -122,8 +140,6 @@ namespace Team34_TextRPG
 			if (target.hp == 0)
 				return;
 
-			else
-				StartBattle(target, attacker);
 		}
 
 		void ShowResult(bool success)
@@ -134,12 +150,12 @@ namespace Team34_TextRPG
 			Console.WriteLine();
 			SpartaRPG.WriteLine($"{(success ? "Victory" : "You Lose")}", success ? ConsoleColor.DarkGreen : ConsoleColor.DarkRed);
 
-			if (success == false)
+			if (success)
 				Console.WriteLine($"몬스터에서 몬스터 {monsters.Count}마리를 잡았습니다.\n");
 
 			Console.WriteLine($"HP {playerStartHp} -> {pd.hp}");
-			Console.WriteLine("0. 다음");
-			SpartaRPG.SelectOption();
+			Console.WriteLine("0. 마을로 돌아가기");
+			SpartaRPG.SelectOption(); 
 		}
 
 
