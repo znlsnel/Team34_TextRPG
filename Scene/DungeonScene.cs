@@ -8,17 +8,28 @@ namespace Team34_TextRPG
 {
 	internal class DungeonScene : Scene
 	{
+		MonsterData monsterData;
 		List<Monster> monsters;
 		static int stage = 1;
 		int playerStartHp = 0;
 
-		public DungeonScene(string name) : base(name){}
+		public DungeonScene(string name) : base($"전투 시작 (현재 진행 : {stage}층)")
+		{
+			monsterData = DataManager.instance.monsterData;
+		}
 
 		public override void EnterScene() 
 		{
-			 monsters = DataManager.instance.monsterData.GetMonster(stage-1);
+			 monsters = monsterData.GetMonster(stage-1);
 			playerStartHp = DataManager.instance.playerData.hp;
 			EnterDungeon();
+		}
+
+		void StageUp() 
+		{
+			stage++;
+			stage = Math.Min(stage, monsterData.stages.Count);
+			name = $"전투 시작 (현재 진행 : {stage}층)";
 		}
 
 		void EnterDungeon()
@@ -166,17 +177,21 @@ namespace Team34_TextRPG
 			{
 				Console.WriteLine($"몬스터에서 몬스터 {monsters.Count}마리를 잡았습니다.");
 				Console.WriteLine();
-
-				int total = 0;
-				foreach (Monster mst in monsters)
-					total += mst.level;
-
-				SpartaRPG.WriteLine($"경험치 {pd.exp} -> {pd.exp + total}", ConsoleColor.Yellow);
-				int prevLevel = pd.level;
-				bool levelUp = pd.AddExp(total);
-				if (levelUp)
-					SpartaRPG.WriteLine($"Level Up ! ! {prevLevel} -> {pd.level}", ConsoleColor.Yellow);
+				StageUp();
 			}
+
+			int total = 0;
+			foreach (Monster mst in monsters)
+			{
+				if (mst.hp == 0)
+					total += mst.level;
+			}
+
+			SpartaRPG.WriteLine($"경험치 {pd.exp} -> {pd.exp + total}", ConsoleColor.Yellow);
+			int prevLevel = pd.level;
+			bool levelUp = pd.AddExp(total);
+			if (levelUp)
+				SpartaRPG.WriteLine($"Level Up ! ! {prevLevel} -> {pd.level}", ConsoleColor.Yellow); 
 
 
 			ConsoleColor color = ConsoleColor.DarkRed; 
