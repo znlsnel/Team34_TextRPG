@@ -51,8 +51,12 @@ namespace Team34_TextRPG
 
 			int length = stages[idx].Length;
 			int cnt = rand.Next(3, 6);
-			while (cnt-- > 0)  
-				list.Add(stages[idx][rand.Next(0, length)]);
+
+			while (cnt-- > 0)
+			{
+				Monster mst = stages[idx][rand.Next(0, length)];
+				list.Add(new Monster(mst.name, mst.level, mst.attack, mst.hp));
+			}
 
 			return list;
 		}
