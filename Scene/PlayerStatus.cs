@@ -8,7 +8,7 @@ namespace Team34_TextRPG
 {
     public class PlayerStatus : Scene
     {
-        public PlayerStatus() : base("플레이어 상태창") { }
+        public PlayerStatus(string name) : base(name) { }
 
         public override void EnterScene()
         {
@@ -20,7 +20,7 @@ namespace Team34_TextRPG
             Console.WriteLine($"\n이름: {pd.name}");
             Console.WriteLine($"레벨: {pd.level}");
             Console.WriteLine($"직업: {pd.classType}");
-            Console.WriteLine($"공격력: {pd.attack}");    // ($"공격력: {pd.attack}" + $"+({추가스텟})");
+            Console.WriteLine($"공격력: {pd.attack }");    // ($"공격력: {pd.attack}" + $"+({추가스텟})");
             Console.WriteLine($"방어력: {pd.defense}"); 
             Console.WriteLine($"최대체력: {pd.maxHp}");
             Console.WriteLine($"현재체력: {pd.hp}");

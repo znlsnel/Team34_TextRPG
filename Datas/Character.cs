@@ -36,9 +36,9 @@ namespace Team34_TextRPG
 
 		public int gold;
 
-		public List<string> myItems = new List<string>();
-		public string weapon = "";
-		public string armor = "";
+		public List<string> myItems_saveData = new List<string>();
+		public string weapon_saveData = "";
+		public string armor_saveData = "";
 
 		public int exp = 0;
 		List<int> requiredExp = new List<int>()
@@ -55,7 +55,7 @@ namespace Team34_TextRPG
 			this.hp = maxHp;
 			this.gold = gold;
 		}
-
+		
 		public bool AddExp(int e)
 		{
 			exp += e;

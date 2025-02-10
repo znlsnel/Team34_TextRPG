@@ -22,6 +22,12 @@ namespace Team34_TextRPG
 		{
 			 monsters = monsterData.GetMonster(stage-1);
 			playerStartHp = DataManager.instance.playerData.hp;
+			if (playerStartHp == 0)
+			{
+				Console.WriteLine("체력이 0입니다. 회복 후, 다시 와주세요");
+				return;
+			}
+
 			EnterDungeon();
 		}
 
@@ -36,13 +42,14 @@ namespace Team34_TextRPG
 		{
 			while (true)
 			{
+				PlayerData pd = DataManager.instance.playerData;
+
 				if (ClearCheck())
 				{ 
 					ShowResult(true);
 					return; 
 				}
 
-				PlayerData pd = DataManager.instance.playerData;
 				if (pd.hp == 0)
 				{
 					ShowResult(false);
@@ -54,18 +61,43 @@ namespace Team34_TextRPG
 				Console.WriteLine();
 
 				PrintMonsterInfo(false);
+				PrintPlayerData(pd);
 
-				SpartaRPG.WriteLine("\n\n[내정보]", ConsoleColor.Yellow);
-				Console.WriteLine($"Lv. {pd.level}\t{pd.name}");
-				Console.WriteLine($"HP {pd.hp}/{pd.maxHp}");
-
-				// 클리어 체크
-				
 				Console.WriteLine("\n1. 공격");
+				Console.WriteLine("2. 스킬 사용");
 				 
-				int value = SpartaRPG.SelectOption(1, 1);
-				SelectMonster();
+				int value = SpartaRPG.SelectOption(1, 2);
+				if (value == 1)
+					SelectMonster();
+				else if (value == 2)
+					SelectSkill();
 			}
+		}
+
+		void SelectSkill()
+		{
+			PlayerData pd = DataManager.instance.playerData;
+			List<Skill> skills = DataManager.instance.skills;
+			Console.Clear();
+			SpartaRPG.WriteLine("Battle!!", ConsoleColor.Magenta);
+			Console.WriteLine();
+
+			PrintMonsterInfo(false);
+			PrintPlayerData(pd);
+
+			Console.WriteLine();
+			for (int i = 0; i <  skills.Count; i++) 
+			{
+				SpartaRPG.WriteLine($"{i + 1}. {skills[i].name} - MP {skills[i].mp}", ConsoleColor.Green);
+				Console.WriteLine($"   {skills[i].desc}");
+			}
+			Console.WriteLine("0. 나가기");
+
+			int value = SpartaRPG.SelectOption(0, skills.Count);
+			if (value == 0)
+				return;
+
+			skills[value - 1].OnSkill(monsters, pd);
 		}
 
 		bool ClearCheck()
@@ -91,10 +123,8 @@ namespace Team34_TextRPG
 			Console.WriteLine();
 
 			PrintMonsterInfo(true);
+			PrintPlayerData(pd);
 
-			SpartaRPG.WriteLine("\n\n[내정보]", ConsoleColor.Yellow);
-			Console.WriteLine($"Lv. {pd.level}\t{pd.name}");
-			Console.WriteLine($"HP {pd.hp}/{pd.maxHp}");
 			Console.WriteLine("\n0. 취소");
 
 			int value = SpartaRPG.SelectOption(0, monsters.Count);
@@ -221,6 +251,13 @@ namespace Team34_TextRPG
 				string HP = mst.hp > 0 ? "HP " + mst.hp : "Dead";
 				SpartaRPG.WriteLine($"{num}Lv.{mst.level} {mst.name} {HP}", mst.hp > 0 ? ConsoleColor.White : ConsoleColor.DarkGray);
 			}
+		}
+
+		void PrintPlayerData(PlayerData pd) 
+		{
+			SpartaRPG.WriteLine("\n\n[내정보]", ConsoleColor.Yellow);
+			Console.WriteLine($"Lv. {pd.level}\t{pd.name}");
+			Console.WriteLine($"HP {pd.hp}/{pd.maxHp}");
 		}
 	}
 }

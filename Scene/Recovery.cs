@@ -8,7 +8,7 @@ namespace Team34_TextRPG
 {
     public class Recovery : Scene
     {
-        public Recovery() : base("회복") { }
+        public Recovery(string name) : base(name) { }
 
         public override void EnterScene()
         {

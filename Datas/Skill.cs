@@ -32,23 +32,22 @@ namespace Team34_TextRPG
 			SpartaRPG.WriteLine($"[{desc}]", ConsoleColor.Green);
 			Console.WriteLine();
 		
-			for (int i = 0; i < monsters.Count; i++)
-				Console.WriteLine($"{i+1}. Lv.{monsters[i].level} {monsters[i].name}  HP {monsters[i].hp}");
+			List<Monster >list = new List<Monster>();
+			foreach (Monster m in monsters)
+				if (m.hp > 0) list.Add(m);
 
-			int value = SpartaRPG.SelectOption(1, monsters.Count);
+			for (int i = 0; i < list.Count; i++)
+				Console.WriteLine($"{i+1}. Lv.{list[i].level} {list[i].name}  HP {list[i].hp}");
 
-			while (monsters[value-1].hp == 0)
-			{
-				Console.Write("이미 죽은 몬스터입니다.");
-				value = SpartaRPG.SelectOption(1, monsters.Count);
-			}
+			int value = SpartaRPG.SelectOption(1, list.Count);
 
-			int prev = monsters[value - 1].hp;
-			monsters[value - 1].Damage(pd.attack * 2);
-			Console.WriteLine($"Lv.{monsters[value - 1].level} {monsters[value - 1].name}을(를) 공격했습니다  HP {prev} -> {monsters[value-1].hp}");
+			int prev = list[value - 1].hp;
+			list[value - 1].Damage(pd.attack * 2);
+			Console.Clear();
+			Console.WriteLine($"Lv.{list[value - 1].level} {list[value - 1].name}을(를) 공격했습니다  HP {prev} -> {list[value-1].hp}");
 			Console.WriteLine("\n0. 돌아가기");
 
-			SpartaRPG.SelectOption(1, monsters.Count);
+			SpartaRPG.SelectOption();
 		}
 	}
 
@@ -70,12 +69,23 @@ namespace Team34_TextRPG
 
 			Random rand = new Random();
 			HashSet<int> idxs = new HashSet<int>();
-			while (idxs.Count < 2)
-				idxs.Add(rand.Next(0, monsters.Count - 1));
+
+			int cnt = 0;
+			foreach (Monster mst in monsters)
+				if (mst.hp > 0) cnt++;
+
+			cnt = Math.Min(2, cnt);
+			while (idxs.Count < cnt)
+			{
+				int idx = rand.Next(0, monsters.Count );
+				if (monsters[idx].hp > 0) 
+					idxs.Add(idx);
+			}
 
 			Console.WriteLine("\n1. 스킬 사용");
 			SpartaRPG.SelectOption(1, 1);
 
+			Console.Clear();
 			foreach (int i in idxs)
 			{
 				int hp = monsters[i].hp;
@@ -84,7 +94,7 @@ namespace Team34_TextRPG
 			}
 
 			Console.WriteLine("\n0. 돌아가기");
-			SpartaRPG.SelectOption(1, monsters.Count);
+			SpartaRPG.SelectOption();
 		}
 	}
 
@@ -109,15 +119,15 @@ namespace Team34_TextRPG
 
 			int hp = pd.hp;
 			pd.Heal(pd.maxHp / 5);
+
+			Console.Clear();
+			Console.WriteLine("체력을 회복합니다!");
 			Console.WriteLine($"{pd.name} HP {hp} -> {pd.hp}"); 
 			
 
 			Console.WriteLine("\n0. 돌아가기");
-			SpartaRPG.SelectOption(1, monsters.Count);
+			SpartaRPG.SelectOption();
 		}
 	}
 
-	public class SkillData
-	{
-	}
 }
