@@ -15,6 +15,19 @@ namespace Team34_TextRPG
 		public int defense;
 		public int maxHp;
 		public int hp;
+
+		public void Damage(int damage)
+		{
+			hp -= damage;
+			if (hp < 0)
+				hp = 0;
+		}
+		public void Heal(int value)
+		{
+			hp += value;
+			if (hp > maxHp)
+				hp = maxHp;
+		}
 	}
 
 	public class PlayerData : Character
