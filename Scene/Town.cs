@@ -15,6 +15,7 @@ namespace Team34_TextRPG
 		Scene store = new StoreScene("상점");
 		Scene inventory = new InventoryScene("인벤토리");
 		Scene dungeon = new DungeonScene("ss");
+		Scene quest = new QuestScene("퀘스트");
 
 		public void EnterTown()
 		{
@@ -24,12 +25,13 @@ namespace Team34_TextRPG
 			Console.WriteLine();
 			Console.WriteLine("1. 상태창");
 			Console.WriteLine("2. 인벤토리");
-			Console.WriteLine("3 상점");
-			Console.WriteLine("4 던전");
+			Console.WriteLine("3. 상점");
+			Console.WriteLine("4. 던전");
+			Console.WriteLine("5. 퀘스트");
 			Console.WriteLine();
 			Console.WriteLine("0. 나가기");
 
-			int value = SpartaRPG.SelectOption(0, 4);
+			int value = SpartaRPG.SelectOption(0, 5);
 
 			if (value == 2)
 				inventory.EnterScene();
@@ -37,6 +39,8 @@ namespace Team34_TextRPG
 				store.EnterScene();
 			else if (value == 4)
 				dungeon.EnterScene();
+			else if (value == 5)
+				quest.EnterScene();
 				
 				
 		}

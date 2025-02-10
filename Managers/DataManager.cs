@@ -26,8 +26,8 @@ namespace Team34_TextRPG
                                 instance = this;
 
                         InitItem();
-
-		}
+                        InitQuest();
+        }
 
         }
 }

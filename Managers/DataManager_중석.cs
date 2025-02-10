@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -10,7 +11,8 @@ namespace Team34_TextRPG
     public partial class DataManager
     {
         public Dictionary<string, Item> items = new Dictionary<string, Item>();
-    
+        public Dictionary<string, QuestData> quests = new Dictionary<string, QuestData>();
+        
         public List<Item> GetItems()
         {
             List<Item> list = new List<Item>();
@@ -30,7 +32,21 @@ namespace Team34_TextRPG
             CreateArmor("스파르타의 갑옷","스파르타의 전사들이 사용했다는 전설의 갑옷입니다.",15,3500);
         }
 
-        //이름 설명 수치 가격
+        
+        public List<QuestData> SelectQuest()
+        {
+                List<QuestData> list = new List<QuestData>();
+                foreach (var quest in quests)
+                    list.Add(quest.Value);
+                return list;
+        }
+        public void InitQuest()
+        {
+            CreateMainQuest("퀘스트 1", "퀘스트 내용");
+            CreateMainQuest("퀘스트 2", "퀘스트 내용");
+            CreateMainQuest("퀘스트 3", "퀘스트 내용");
+        }
+        
         public void CreateWeapon(string name, string dec, int value, int price)
         {
             Weapon weapon = new Weapon(name, dec, value, price);
@@ -41,5 +57,11 @@ namespace Team34_TextRPG
             Armor armor = new Armor(name, dec, value, price);
             items.Add(name, armor);
         }
+        public void CreateMainQuest(string name, string dec)
+        {
+            MainQuest quest = new MainQuest(name, dec);
+            quests.Add(name, quest);
+        }
+        
     }
 }
