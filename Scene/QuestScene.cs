@@ -43,7 +43,7 @@ namespace Team34_TextRPG
                 Console.WriteLine("[퀘스트]");
                 ShowQuestList(quests, true);
 
-                Console.WriteLine("0.나가기");
+                Console.WriteLine("\n0.나가기");
 
                 int value = SpartaRPG.SelectOption(0, quests.Count); //퀘스트 숫자만큼
                 if (value == 0)
