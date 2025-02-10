@@ -113,8 +113,10 @@ namespace Team34_TextRPG
 			Random rand = new Random();
 			int damage = attacker.attack * rand.Next(90, 110) / 100;
 			bool isCritical = rand.Next(0, 100) < 15;
+			bool isDodged = rand.Next(0, 100) < 10;
+
 			if (isCritical)
-				damage *= 16 / 10;
+				damage *= 16 / 10; 
 
 			Console.Clear();
 			SpartaRPG.Write("Battle!!", ConsoleColor.Magenta);
@@ -126,6 +128,14 @@ namespace Team34_TextRPG
 			
 			Console.WriteLine();
 			Console.WriteLine($"Lv.{attacker.level} {attacker.name} 의 공격!");
+
+			if (isDodged)
+			{
+				Console.WriteLine($"{target.name} 을(를) 공격했지만 아무일도 일어나지 않았습니다.");
+				Console.WriteLine("\n0. 다음"); 
+				SpartaRPG.SelectOption();
+				return;
+			}
 
 			SpartaRPG.Write($"{target.name}", attacker is PlayerData ? ConsoleColor.Red: ConsoleColor.Green);
 			Console.Write(" 을(를) 맞췄습니다 "); 
@@ -141,10 +151,6 @@ namespace Team34_TextRPG
 
 			Console.WriteLine("\n0. 다음");
 			SpartaRPG.SelectOption();
-
-			if (target.hp == 0)
-				return;
-
 		}
 
 		void ShowResult(bool success)
