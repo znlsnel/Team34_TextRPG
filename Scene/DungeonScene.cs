@@ -117,22 +117,23 @@ namespace Team34_TextRPG
 				SpartaRPG.WriteLine(" - 플레이어 턴!", ConsoleColor.Green);
 			else
 				SpartaRPG.WriteLine(" - 몬스터 턴!", ConsoleColor.Red);
-
+			Random rand = new Random();
+			int damage = attacker.attack * rand.Next(90, 110) / 100;
 
 			Console.WriteLine();
 			Console.WriteLine($"Lv.{attacker.level} {attacker.name} 의 공격!");
 
 			SpartaRPG.Write($"{target.name}", attacker is PlayerData ? ConsoleColor.Red: ConsoleColor.Green);
 			Console.Write(" 을(를) 맞췄습니다 "); 
-			SpartaRPG.WriteLine($"[데미지 : {attacker.attack}]", attacker is PlayerData ? ConsoleColor.Green : ConsoleColor.Red);
+			SpartaRPG.WriteLine($"[데미지 : {damage}]", attacker is PlayerData ? ConsoleColor.Green : ConsoleColor.Red);
 
 			Console.WriteLine($"\nLv.{target.level} {target.name}");
 
-			if (target.hp <= attacker.attack)
+			if (target.hp <= damage)
 				Console.WriteLine($"HP {target.hp} -> Dead");
 			else
-				Console.WriteLine($"HP {target.hp} -> {target.hp - attacker.attack}");
-			target.hp = Math.Max(0, target.hp - attacker.attack);
+				Console.WriteLine($"HP {target.hp} -> {target.hp - damage}");
+			target.hp = Math.Max(0, target.hp - damage);
 
 			Console.WriteLine("\n0. 다음");
 			SpartaRPG.SelectOption();
@@ -166,7 +167,7 @@ namespace Team34_TextRPG
 				Monster mst = monsters[i];
 				string num = includeNum ? $"{i + 1} " : "";
 				string HP = mst.hp > 0 ? "HP " + mst.hp : "Dead";
-				SpartaRPG.WriteLine($"{num}Lv.{mst.level} {mst.name} {HP}", mst.hp > 0 ? ConsoleColor.White : ConsoleColor.Red);
+				SpartaRPG.WriteLine($"{num}Lv.{mst.level} {mst.name} {HP}", mst.hp > 0 ? ConsoleColor.White : ConsoleColor.DarkGray);
 			}
 		}
 	}

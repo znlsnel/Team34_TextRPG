@@ -44,7 +44,6 @@ namespace Team34_TextRPG
 				Console.WriteLine("\n잘못된 입력입니다. 다시 입력해주세요.");
 				Console.Write(">> ");
 			}
-
 			return ret;
 		}
 
