@@ -89,6 +89,14 @@ namespace Team34_TextRPG
 			int value = SpartaRPG.SelectOption(0, monsters.Count);
 			if (value == 0)
 				return;
+			
+			while (monsters[value-1].hp <= 0)
+			{
+				Console.WriteLine("\n이미 죽은 몬스터입니다");
+				value = SpartaRPG.SelectOption(0, monsters.Count);
+				if (value == 0)
+					return;
+			}
 
 			StartBattle(pd, monsters[value - 1]);
 
