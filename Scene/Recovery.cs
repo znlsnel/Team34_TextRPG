@@ -22,9 +22,6 @@ namespace Team34_TextRPG
 
             Console.WriteLine("\n1.사용하기");
             Console.WriteLine("0.나가기");
-            Console.WriteLine("\n원하는 행동을 입력해주세요");
-            Console.Write(">>");
-            Console.Read();
 
             int value = SpartaRPG.SelectOption(0, 1);
             if (value == 0)
