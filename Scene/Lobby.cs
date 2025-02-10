@@ -8,13 +8,14 @@ namespace Team34_TextRPG
 {
 	public class Lobby : Scene
 	{
+		Scene playerCreateScene = new PlayerCreateScene("캐릭터 생성");
 		Town town = new Town();
 		public Lobby() : base("로비"){}
 		
 		public override void EnterScene()
 		{
 			Console.Clear();
-			Console.WriteLine("게임에 접속하신 것을 환영합니다22.");
+			Console.WriteLine("게임에 접속하신 것을 환영합니다.");
 			Console.WriteLine("아래의 기능들 중 하나를 선택해 주세요.");
 			Console.WriteLine();
 			Console.WriteLine("1. 새 게임");
@@ -29,7 +30,7 @@ namespace Team34_TextRPG
 			switch(value)
 			{
 				case 1: // 캐릭터 생성씬과 연결
-					town.EnterTown();
+					playerCreateScene.EnterScene();
 					break;
 				case 2:
 					LoadData();
