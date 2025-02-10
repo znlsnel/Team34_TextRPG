@@ -27,6 +27,10 @@ namespace Team34_TextRPG
 		public string weapon = "";
 		public string armor = "";
 
+		public int exp = 0;
+		List<int> requiredExp = new List<int>()
+		{10, 35, 65, 100, 170, 250, 350, 500, 1000, 1500};
+
 		public PlayerData(string name, int level, EClassType type, int attack, int d, int maxHp, int gold)
 		{
 			this.name = name;
@@ -37,6 +41,17 @@ namespace Team34_TextRPG
 			this.maxHp = maxHp;
 			this.hp = maxHp;
 			this.gold = gold;
+		}
+
+		public bool AddExp(int e)
+		{
+			exp += e;
+			if (requiredExp[level-1] <= exp)
+			{
+				level++;
+				return true;
+			}
+			return false;
 		}
 	}
 
