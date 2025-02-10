@@ -16,6 +16,7 @@ namespace Team34_TextRPG
 		public DungeonScene(string name) : base($"전투 시작 (현재 진행 : {stage}층)")
 		{
 			monsterData = DataManager.instance.monsterData;
+			
 		}
 
 		public override void EnterScene() 

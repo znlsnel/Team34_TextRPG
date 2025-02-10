@@ -22,26 +22,19 @@ namespace Team34_TextRPG
             Console.WriteLine("0.나가기");
 
             int value = SpartaRPG.SelectOption(0, 1);
+            if (value == 0)
+                return;
 
-            switch (value)
-            {
-                case 0:
-                    return;
-
-                case 1:
-                    GetQuest();
-                    break;
-            }
+            GetQuest();
             EnterScene();
         }
-        public void GetQuest()
+        void GetQuest()
         {
             List<QuestData> quests = DataManager.instance.SelectQuest();
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("[퀘스트]");
-                ShowQuestList(quests, true);
+                ShowQuestList(quests);
 
                 Console.WriteLine("\n0.나가기");
 
@@ -54,19 +47,26 @@ namespace Team34_TextRPG
         }
 
         
-        public void ShowQuestList(List<QuestData> quests, bool showNum)
+        void ShowQuestList(List<QuestData> quests)
         {
             Console.Clear();
-            Console.WriteLine("퀘스트 목록");
+            Console.WriteLine("[퀘스트 목록]");
 
             int cnt = 1;
             foreach (QuestData quest in quests)
-            {
-                
-                string num = showNum ? $"{cnt++}." : "-"; //퀘스트 숫자 or -
-                Console.WriteLine($"{num} {quest.name} \t| {quest.description}");
-            }
+                Console.WriteLine($"{cnt++}. {quest.name} \t| {quest.description}");
+        }
+
+        void ShowQuestData(QuestData quest)
+        {
+            SpartaRPG.WriteLine("Quest! !", ConsoleColor.Magenta);
+            Console.WriteLine();
+            Console.WriteLine(quest.name);
+            Console.WriteLine();
+            Console.WriteLine(quest.description);
+
 
         }
+        
     }
 }
