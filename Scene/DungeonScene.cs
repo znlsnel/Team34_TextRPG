@@ -217,7 +217,7 @@ namespace Team34_TextRPG
 
 			if (success)
 			{
-				Console.WriteLine($"몬스터에서 몬스터 {monsters.Count}마리를 잡았습니다.");
+				Console.WriteLine($"몬스터 {monsters.Count}마리를 잡았습니다.");
 				Console.WriteLine();
 				MoveToNextStage();
 			}
