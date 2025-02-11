@@ -56,8 +56,10 @@ namespace Team34_TextRPG
 			{')', "_  \r\n\\\\ \r\n ||\r\n ||\r\n// \r\n"},
 			{'!', "||\r\nL|\r\n  \r\n()\r\n  \r\n"}, 
 		};
+
 		public string printText = "";
 		ConsoleColor printColor = ConsoleColor.White;
+
 		public AsciiArt()
 		{
 			instance = this;
@@ -103,7 +105,8 @@ namespace Team34_TextRPG
 		{
 			while (!token.IsCancellationRequested)
 			{
-				Console.ForegroundColor = printColor;
+				
+					Console.ForegroundColor = printColor;
 				var (prevX, prevY) = Console.GetCursorPosition();
 				Console.SetCursorPosition(0, 0); // 이전 줄 지우기 
 				Console.WriteLine(AddWalls(printText));  
@@ -111,7 +114,7 @@ namespace Team34_TextRPG
 
 				printText = ShiftLeft(printText);
 				Console.ForegroundColor = ConsoleColor.White;
-				await Task.Delay(10); // 애니메이션 속도 조절
+				await Task.Delay(100); // 애니메이션 속도 조절
 			}
 		}
 
