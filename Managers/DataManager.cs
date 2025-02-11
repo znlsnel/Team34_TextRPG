@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MiNET;
 
 namespace Team34_TextRPG
 {
-
+    
         // ==== 구현 기능 ====
         // 플레이어 데이터 
         // 아이템 데이터
@@ -17,8 +18,7 @@ namespace Team34_TextRPG
         public partial class DataManager
         {
                 public static DataManager instance;
-                public PlayerData player = new PlayerData("sad", 1, EClassType.WARRIOR, 30, 30, 200, 20000);
-                
+                public PlayerData playerData = new PlayerData( "player", 1, EClassType. WARRIOR , 30, 30, 200, 20000);
 
                 public DataManager()
                 {

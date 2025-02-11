@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
+using MiNET;
+using MiNET.Entities.Behaviors;
 
 namespace Team34_TextRPG
 {
@@ -53,8 +56,8 @@ namespace Team34_TextRPG
             for (int i = 0; i < list.Count; i++)
                 Console.WriteLine($"{i + 1}.{list[i]}");
 
-            int classNumber = SpartaRPG.SelectOption(1, 5);
-            Class = list[classNumber -1];
+            int classJob = SpartaRPG.SelectOption(1, 5);
+            Class = list[classJob -1];
             Doneplayer();
 
 
@@ -75,16 +78,81 @@ namespace Team34_TextRPG
 
             if (done == 1)
             {
-              town.EnterTown();
+                town.EnterTown();
             }
 
-             else
-             {
-               EnterScene();
-             }
+            else
+            {
+                EnterScene();
+            }
+
+            Dictionary<EClassType, string> classJob = new Dictionary<EClassType, string>()
+            {
+                { EClassType.WARRIOR,"전사"},
+                { EClassType.ROGUE,"도적"},
+                { EClassType.MAGE,"마법사"},
+                { EClassType.ARCHER,"궁수"},
+                { EClassType.PALADIN,"팔라딘"},
+            };
 
 
+            Dictionary<EClassType, PlayerClass> dic = new Dictionary<EClassType, PlayerClass>();
+            dic.Add(EClassType.WARRIOR, new PlayerClass(EClassType.WARRIOR, 10, 10, 100));
+            dic.Add(EClassType.ROGUE, new PlayerClass(EClassType.ROGUE, 6, 14, 90));
+            dic.Add(EClassType.MAGE, new PlayerClass(EClassType.MAGE, 20, 5, 150));
+            dic.Add(EClassType.ARCHER, new PlayerClass(EClassType.ARCHER, 8, 7, 120));
+            dic.Add(EClassType.PALADIN, new PlayerClass(EClassType.PALADIN, 7, 8, 110));
+
+
+
+
+            int value = 1;
+
+            if (value == 1)
+            {
+                DataManager.instance.playerData.classType = dic[EClassType.WARRIOR].classType;
+                DataManager.instance.playerData.attack = dic[EClassType.WARRIOR].attack;
+                DataManager.instance.playerData.defense = dic[EClassType.WARRIOR].armor;
+                DataManager.instance.playerData.hp = dic[EClassType.WARRIOR].health;
+            }
+            else if (value == 2)
+            {
+                DataManager.instance.playerData.classType = dic[EClassType.ROGUE].classType;
+                DataManager.instance.playerData.attack = dic[EClassType.ROGUE].attack;
+                DataManager.instance.playerData.defense = dic[EClassType.ROGUE].armor;
+                DataManager.instance.playerData.hp = dic[EClassType.ROGUE].health;
+            }
+
+
+            else if (value == 3)
+            {
+                DataManager.instance.playerData.classType = dic[EClassType.MAGE].classType;
+                DataManager.instance.playerData.attack = dic[EClassType.MAGE].attack;
+                DataManager.instance.playerData.defense = dic[EClassType.MAGE].armor;
+                DataManager.instance.playerData.hp = dic[EClassType.MAGE].health;
+            }
+
+            else if (value == 4)
+            {
+                DataManager.instance.playerData.classType = dic[EClassType.ARCHER].classType;
+                DataManager.instance.playerData.attack = dic[EClassType.ARCHER].attack;
+                DataManager.instance.playerData.defense = dic[EClassType.ARCHER].armor;
+                DataManager.instance.playerData.hp = dic[EClassType.ARCHER].health;
+            }
+
+            else
+            {
+                DataManager.instance.playerData.classType = dic[EClassType.PALADIN].classType;
+                DataManager.instance.playerData.attack = dic[EClassType.PALADIN].attack;
+                DataManager.instance.playerData.defense = dic[EClassType.PALADIN].armor;
+                DataManager.instance.playerData.hp = dic[EClassType.PALADIN].health;
 
             }
+
+            PlayerData playerData = DataManager.instance.playerData;
+
+
+
+        }
     }
 }
