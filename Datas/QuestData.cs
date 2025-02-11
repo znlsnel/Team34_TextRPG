@@ -12,6 +12,7 @@ namespace Team34_TextRPG
         KillMinion,
         LevelUp,
         EquipItem,
+        EquipWeapon,
     }
 	
 
@@ -30,11 +31,10 @@ namespace Team34_TextRPG
             this.type = type;
         }
 
-        public void AchieveStep()
+        public void ProgressTask(int cnt)
         {
-            curCnt++;
-            if (curCnt > targetCnt)
-                curCnt = targetCnt;
+            curCnt += cnt;
+			curCnt = Math.Max(curCnt, 0);
         }
 	}
 	public enum EQuestState

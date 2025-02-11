@@ -54,7 +54,11 @@ namespace Team34_TextRPG
         {
 			EQuestState state = quest.state;
 
-            Console.Clear();
+			Quest_Task qt = DataManager.instance.GetTask(ETaskType.LevelUp);
+			if (qt != null)
+				qt.curCnt = DataManager.instance.playerData.level;
+
+			Console.Clear();
             string qstate = state == EQuestState.Pending ? "수락 대기" : state == EQuestState.InProgress ? "진행중" : "완료!";
 			ConsoleColor stateColor = state == EQuestState.Pending ? ConsoleColor.Yellow : state == EQuestState.InProgress ? ConsoleColor.Blue : ConsoleColor.Green;
 			SpartaRPG.Write("Quest!!", ConsoleColor.Magenta);
@@ -63,15 +67,17 @@ namespace Team34_TextRPG
 
             Console.WriteLine($"\n"+quest.name);
             Console.WriteLine($"\n{quest.description}\n");
+            
+            if (state != EQuestState.Completed)
+            {
+				foreach (Quest_Task task in quest.tasks)
+					SpartaRPG.WriteLine($"- {task.name} \t{Math.Min(task.curCnt, task.targetCnt)} / {task.targetCnt}", task.isCompleted ? ConsoleColor.DarkYellow : ConsoleColor.Yellow);
 
-			foreach (Quest_Task task in quest.tasks)
-				SpartaRPG.WriteLine($"- {task.name} \t{task.curCnt} / {task.targetCnt}", task.isCompleted ? ConsoleColor.DarkYellow : ConsoleColor.Yellow);
-
-			
-			Console.WriteLine("\n- 보상 -");
-			foreach (Item reward in quest.items)
-				SpartaRPG.WriteLine($"  {reward.name} x 1", ConsoleColor.Cyan);
-			SpartaRPG.WriteLine($"  Gold + {quest.gold}", ConsoleColor.Cyan);
+				Console.WriteLine("\n- 보상 -");
+				foreach (Item reward in quest.items)
+					SpartaRPG.WriteLine($"  {reward.name} x 1", ConsoleColor.Cyan);
+				SpartaRPG.WriteLine($"  Gold + {quest.gold}", ConsoleColor.Cyan);
+			}
 
             switch (state)
             {

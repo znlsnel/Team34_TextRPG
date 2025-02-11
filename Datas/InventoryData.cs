@@ -38,16 +38,30 @@ namespace Team34_TextRPG
 			if (item is Weapon)
 			{
 				if (weapon == item)
+				{
+					DataManager.instance.ReportTask(ETaskType.EquipItem, -1);
+					DataManager.instance.ReportTask(ETaskType.EquipWeapon, -1);
 					weapon = null;
+				}
 				else
+				{
+					DataManager.instance.ReportTask(ETaskType.EquipItem, 1);
+					DataManager.instance.ReportTask(ETaskType.EquipWeapon, 1);
 					weapon = item;
+				}
 			}
 			else
 			{
 				if (armor == item)
+				{
+					DataManager.instance.ReportTask(ETaskType.EquipItem, -1);
 					armor = null;
+				} 
 				else
-					armor = item; 
+				{
+					DataManager.instance.ReportTask(ETaskType.EquipItem, 1);
+					armor = item;
+				}
 			}
 		}
 
