@@ -28,6 +28,9 @@ namespace Team34_TextRPG
             CreateArmor("수련자 갑옷","수련에 도움을 주는 갑옷입니다.",5,1000);
             CreateArmor("무쇠갑옷","무쇠로 만들어져 튼튼한 갑옷입니다.",9,2000);
             CreateArmor("스파르타의 갑옷","스파르타의 전사들이 사용했다는 전설의 갑옷입니다.",15,3500);
+
+            CreatePotion("Hp회복 물약", "Hp를 30회복 시켜주는 물약입니다.", 30, 500);
+            CreatePotion("Mp회복 물약", "Mp를 30회복 시켜주는 물약입니다.", 30, 500);
         }
 
         //이름 설명 수치 가격
@@ -40,6 +43,12 @@ namespace Team34_TextRPG
         {
             Armor armor = new Armor(name, dec, value, price);
             items.Add(name, armor);
+        }
+
+        public void CreatePotion(string name, string dec, int value, int price)
+        {
+            Potion potion = new Potion(name, dec, value,price);
+            items.Add(name, potion);
         }
     }
 }

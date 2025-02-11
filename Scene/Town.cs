@@ -12,47 +12,55 @@ namespace Team34_TextRPG
 
 	public class Town
 	{
-		Scene status = new PlayerStatus();
+		
+		Scene recovery = new Recovery();
 		Scene store = new StoreScene("상점");
 		Scene inventory = new InventoryScene("인벤토리");
 		Scene dungeon = new DungeonScene("ss");
-		Scene recovery = new Recovery();
-
+		Scene status = new PlayerStatus();
+		//while 덮어쓰기 
 		public void EnterTown()
 		{
-			Console.Clear();
-            Console.WriteLine("이곳은 마을 입니다.");
-            Console.WriteLine("아래의 기능중 하나를 선택해 주세요.");
-			Console.WriteLine();
-			Console.WriteLine("1. 상태창");
-			Console.WriteLine("2. 인벤토리");
-			Console.WriteLine("3. 상점");
-			Console.WriteLine("4. 던전");
-			Console.WriteLine("5. HP 회복");
-			Console.WriteLine();
-			Console.WriteLine("0. 나가기");
-
-			int value = SpartaRPG.SelectOption(0, 5);
-
-			switch (value)
+			while (true)
 			{
-				case 0:
-					break;
-			    case 1:
-					status.EnterScene();
-					break;
-			    case 2:
-					inventory.EnterScene(); 
-					break;
-			    case 3:
-					store.EnterScene();
-					break;
-				case 4:
-					dungeon.EnterScene();
-					break;
-				case 5:
-					recovery.EnterScene();
-					break;
+				Console.Clear();
+				Console.WriteLine("이곳은 마을 입니다.");
+				Console.WriteLine("아래의 기능중 하나를 선택해 주세요.");
+				Console.WriteLine();
+				Console.WriteLine("1. 상태창");
+				Console.WriteLine("2. 인벤토리");
+				Console.WriteLine("3. 상점");
+				Console.WriteLine("4. 던전");
+				Console.WriteLine("5. Hp 회복");
+				Console.WriteLine();
+				Console.WriteLine("0. 나가기");
+
+				int value = SpartaRPG.SelectOption(0, 5);
+
+				switch (value)
+				{
+					case 0:
+						return;
+					case 1:
+						status.EnterScene();
+						break;
+					case 2:
+						inventory.EnterScene();
+						break;
+					case 3:
+						store.EnterScene();
+						break;
+					case 4:
+						dungeon.EnterScene();
+						break;
+					case 5:
+						recovery.EnterScene();
+						break;
+
+				}
+				
+				
+
 			}
 				
 				
