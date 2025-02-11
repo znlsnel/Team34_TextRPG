@@ -48,15 +48,25 @@ namespace Team34_TextRPG
 			{'8', " __ \r\n(o )\r\n/o \\\r\n\\__/\r\n    \r\n"},
 			{'9', " __ \r\n/o \\\r\n\\_ /\r\n // \r\n    \r\n"},
 			{'0', "  _  \r\n / \\ \r\n| 0 |\r\n \\_/ \r\n     \r\n"},
+			{'-', "    \r\n    \r\n __ \r\n|__|\r\n    \r\n"},
+			{'_', "     \r\n     \r\n     \r\n ___ \r\n|___|\r\n"},
+			{'[', " __ \r\n| _|\r\n| | \r\n| | \r\n|__|\r\n"},
+			{']', " __ \r\n|_ |\r\n | |\r\n | |\r\n|__|\r\n"},
+			{'(', "  _\r\n //\r\n|| \r\n|| \r\n \\\\\r\n"},
+			{')', "_  \r\n\\\\ \r\n ||\r\n ||\r\n// \r\n"},
+			{'!', "||\r\nL|\r\n  \r\n()\r\n  \r\n"}, 
 		};
-		public string currString = "";
+		public string printText = "";
+		ConsoleColor printColor = ConsoleColor.White;
 		public AsciiArt()
 		{
 			instance = this;
-			currString = PrintAsciiArt("WellCom");
+			printText = PrintAsciiArt("WellCom");
 		}
-		public string PrintAsciiArt(string text)
+		public string PrintAsciiArt(string text, ConsoleColor color = ConsoleColor.White)
 		{
+			printColor = color;
+			text += "  ";
 			text = text.ToUpper();
 			string[] lines = new string[5]; // ASCII 아트는 5줄씩 구성됨
 
@@ -85,21 +95,23 @@ namespace Team34_TextRPG
 				sb.AppendLine(line);
 			}
 			
-			currString = sb.ToString();
-			return currString;
+			printText = sb.ToString();
+			return printText;
 		}
 
 		public async Task RunAnimation(CancellationToken token)
 		{
 			while (!token.IsCancellationRequested)
 			{
+				Console.ForegroundColor = printColor;
 				var (prevX, prevY) = Console.GetCursorPosition();
 				Console.SetCursorPosition(0, 0); // 이전 줄 지우기 
-				Console.WriteLine(AddWalls(currString));  
+				Console.WriteLine(AddWalls(printText));  
 				Console.SetCursorPosition(prevX, prevY); // 이전 줄 지우기
 
-				currString = ShiftLeft(currString);
-				await Task.Delay(300); // 애니메이션 속도 조절
+				printText = ShiftLeft(printText);
+				Console.ForegroundColor = ConsoleColor.White;
+				await Task.Delay(10); // 애니메이션 속도 조절
 			}
 		}
 

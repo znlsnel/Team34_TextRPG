@@ -22,7 +22,8 @@ namespace Team34_TextRPG
 
 		public override void EnterScene() 
 		{
-			Console.Clear();
+			SpartaRPG.Clear();
+			AsciiArt.instance.PrintAsciiArt("DUNGEON", ConsoleColor.Magenta);
 			SpartaRPG.WriteLine("Battle!!", ConsoleColor.Magenta);
 			Console.WriteLine();
 
@@ -67,7 +68,7 @@ namespace Team34_TextRPG
 					return;
 				}
 
-				Console.Clear();
+				SpartaRPG.Clear();
 				SpartaRPG.WriteLine("Battle!!", ConsoleColor.Magenta);
 				Console.WriteLine();
 
@@ -95,7 +96,7 @@ namespace Team34_TextRPG
 		{
 			PlayerData pd = DataManager.instance.playerData;
 			List<Skill> skills = DataManager.instance.skills;
-			Console.Clear();
+			SpartaRPG.Clear();
 			SpartaRPG.WriteLine("Battle!!", ConsoleColor.Magenta);
 			Console.WriteLine();
 
@@ -135,7 +136,7 @@ namespace Team34_TextRPG
 		{
 			PlayerData pd = DataManager.instance.playerData;
 
-			Console.Clear();
+			SpartaRPG.Clear();
 			SpartaRPG.WriteLine("Battle!!", ConsoleColor.Magenta);
 			Console.WriteLine();
 
@@ -170,9 +171,9 @@ namespace Team34_TextRPG
 			bool isDodged = rand.Next(0, 100) < 10;
 
 			if (isCritical)
-				damage *= 16 / 10; 
+				damage *= 16 / 10;
 
-			Console.Clear();
+			SpartaRPG.Clear();
 			SpartaRPG.Write("Battle!!", ConsoleColor.Magenta);
 
 			if (attacker is PlayerData)
@@ -209,7 +210,7 @@ namespace Team34_TextRPG
 
 		void ShowResult(bool success)
 		{
-			Console.Clear();
+			SpartaRPG.Clear();
 			PlayerData pd = DataManager.instance.playerData;
 			SpartaRPG.WriteLine("Battle!!", ConsoleColor.Magenta);
 			Console.WriteLine();

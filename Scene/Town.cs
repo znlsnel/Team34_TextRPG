@@ -37,7 +37,8 @@ namespace Team34_TextRPG
 		public void EnterTown()
 		{
 		
-			Console.Clear();
+			SpartaRPG.Clear();
+			AsciiArt.instance.PrintAsciiArt("TOWN", ConsoleColor.Green);
 			Console.WriteLine("이곳은 마을 입니다.");
 			Console.WriteLine("아래의 기능중 하나를 선택해 주세요.");
 			Console.WriteLine();

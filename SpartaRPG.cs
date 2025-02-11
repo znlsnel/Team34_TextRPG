@@ -56,7 +56,7 @@ namespace Team34_TextRPG
 			Console.WriteLine(str);
 			Console.ForegroundColor = ConsoleColor.White;
 		}
-
+		  
 		public static void Write(string str, ConsoleColor color)
 		{
 			Console.ForegroundColor = color;
