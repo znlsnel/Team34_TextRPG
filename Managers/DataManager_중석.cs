@@ -37,7 +37,8 @@ namespace Team34_TextRPG
         public void AddTask(ETaskType type, Quest_Task task) => tasks.Add(type, task);
         public void ReportTask(ETaskType type)
         {
-            tasks[type]?.AchieveStep(); 
+            if (tasks.ContainsKey(type))
+                tasks[type]?.AchieveStep(); 
 		}
 		public void CreateMainQuest(string name, string dec, List<Quest_Task> tasks, List<Item> items, int gold)
         {

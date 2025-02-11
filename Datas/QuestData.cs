@@ -13,18 +13,21 @@ namespace Team34_TextRPG
         LevelUp,
         EquipItem,
     }
+	
 
-    public class Quest_Task
+	public class Quest_Task
     {
         public string name;
 		public int targetCnt = 0;
 		public int curCnt = 0;
-        public bool isCompleted => curCnt >= targetCnt; 
+        public bool isCompleted => curCnt >= targetCnt;
+		public ETaskType type;
+
         public Quest_Task(string name, int targetCnt, ETaskType type)
         {
             this.name = name;
             this.targetCnt = targetCnt;
-            DataManager.instance.AddTask(type, this); 
+            this.type = type;
         }
 
         public void AchieveStep()
@@ -34,8 +37,14 @@ namespace Team34_TextRPG
                 curCnt = targetCnt;
         }
 	}
+	public enum EQuestState
+	{
+		Pending,   // 퀘스트 수락 대기
+		InProgress, // 진행 중
+		Completed   // 완료
+	}
 
-    public class QuestData
+	public class QuestData
     {
         public string name;
         public string description;
@@ -43,6 +52,7 @@ namespace Team34_TextRPG
         
         public List<Quest_Task> tasks;
         public List<Item> items;
+        public EQuestState state { get; private set; } = EQuestState.Pending;
 
         public QuestData(string name, string description, List<Quest_Task> tasks, List<Item> items, int gold)
         {
@@ -52,6 +62,7 @@ namespace Team34_TextRPG
             this.items = items;
             this.gold = gold;
 		}
+
 		public bool IsCompleted()
         {
             foreach (Quest_Task task in tasks)
@@ -60,6 +71,14 @@ namespace Team34_TextRPG
 
             return true;
         }
-
+        public void SetState(EQuestState state)
+        {
+            this.state = state;
+            if (this.state == EQuestState.InProgress)
+            {
+                foreach (Quest_Task task in  this.tasks)
+				    DataManager.instance.AddTask(task.type, task);
+			}
+        }
 	}
 }
