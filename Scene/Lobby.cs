@@ -13,7 +13,8 @@ namespace Team34_TextRPG
 		
 		public override void EnterScene()
 		{
-			Console.Clear();
+			SpartaRPG.Clear();
+			AsciiArt.instance.PrintAsciiArt("SPARTA  RPG");
 			Console.WriteLine("게임에 접속하신 것을 환영합니다22.");
 			Console.WriteLine("아래의 기능들 중 하나를 선택해 주세요.");
 			Console.WriteLine();

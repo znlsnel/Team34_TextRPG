@@ -14,10 +14,13 @@ namespace Team34_TextRPG
      
 	public class SpartaRPG
 	{
+		AsciiArt asci = new AsciiArt();
 		DataManager dataManager = new DataManager();
 		Lobby lobby = new Lobby();
 		public void GameStart()
 		{
+			CancellationTokenSource cts = new CancellationTokenSource();
+			Task animationTask = asci.RunAnimation(cts.Token);
 			lobby.EnterScene();
 		}
 
@@ -29,20 +32,20 @@ namespace Team34_TextRPG
 			string str;
 			bool isNumeric;
 			int ret;
+			
 
 			while (true)
 			{
-				str = Console.ReadLine();
-				isNumeric = str.All(char.IsDigit); // 모든 문자가 숫자인지 체크
-				ret = isNumeric && str.Length > 0 ? int.Parse(str) : min - 1; // 인자로 받은 범위 안의 수인지 체크
+				if (Console.KeyAvailable)
+				{
+					ConsoleKeyInfo keyInfo = Console.ReadKey(intercept: true);
+					isNumeric = keyInfo.KeyChar >= '0' && keyInfo.KeyChar <= '9';
+					ret = isNumeric ? int.Parse(keyInfo.KeyChar.ToString()) : min -1;
 
-				// 조건에 부합하는 수를 입력받은 경우 반복문 종료
-				if (isNumeric && ret >= min && ret <= max)
-					break;
-
-				// 조건에 부합하지 않는다면 반복하여 입력 받기
-				Console.WriteLine("\n잘못된 입력입니다. 다시 입력해주세요.");
-				Console.Write(">> ");
+					// 조건에 부합하는 수를 입력받은 경우 반복문 종료
+					if (isNumeric && ret >= min && ret <= max)
+						break;
+				}
 			}
 			return ret;
 		}
@@ -60,5 +63,11 @@ namespace Team34_TextRPG
 			Console.Write(str);
 			Console.ForegroundColor = ConsoleColor.White;
 		}
+
+		public static void Clear()
+		{
+			Console.Clear();
+            Console.WriteLine("\n\n\n\n\n");
+        }
 	}
 }
