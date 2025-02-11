@@ -35,6 +35,11 @@ namespace Team34_TextRPG
 			List<Item> list = new List<Item>();
 			foreach (var index in items)
 				list.Add(index.Value);
+
+
+
+
+
 			return list;
 		}
 

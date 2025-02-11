@@ -25,28 +25,11 @@ namespace Team34_TextRPG
             if (value == 0)
                 return;
 
-            GetQuest();
-            EnterScene();
-        }
-        void GetQuest()
-        {
-            List<QuestData> quests = DataManager.instance.SelectQuest();
-            while (true)
-            {
-                Console.Clear();
-                ShowQuestList(quests);
 
-                Console.WriteLine("\n0.나가기");
-
-                int value = SpartaRPG.SelectOption(0, quests.Count); //퀘스트 숫자만큼
-                if (value == 0)
-                    return;
-
-                QuestData quest = quests[value - 1];
-            }
+			ShowQuestList(quests);
+			EnterScene();
         }
 
-        
         void ShowQuestList(List<QuestData> quests)
         {
             Console.Clear();
@@ -54,19 +37,31 @@ namespace Team34_TextRPG
 
             int cnt = 1;
             foreach (QuestData quest in quests)
-                Console.WriteLine($"{cnt++}. {quest.name} \t| {quest.description}");
+                Console.WriteLine($"{cnt++}. {quest.name}");
+
+            int idx = SpartaRPG.SelectOption(1, quests.Count)-1;
+            ShowQuestData(quests[idx]);
         }
 
         void ShowQuestData(QuestData quest)
         {
+            Console.Clear();
             SpartaRPG.WriteLine("Quest! !", ConsoleColor.Magenta);
             Console.WriteLine();
             Console.WriteLine(quest.name);
             Console.WriteLine();
             Console.WriteLine(quest.description);
+			Console.WriteLine();
 
+			foreach (Quest_Task task in quest.tasks)
+            {
+                SpartaRPG.WriteLine($"- {task.name} \t{task.curCnt} / {task.targetCnt}", task.isCompleted ? ConsoleColor.DarkYellow : ConsoleColor.Yellow);
+            }
 
-        }
+            Console.WriteLine("\n0. 나가기");
+            SpartaRPG.SelectOption();
+
+		}
         
     }
 }

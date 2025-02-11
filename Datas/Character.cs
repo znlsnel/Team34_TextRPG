@@ -16,7 +16,7 @@ namespace Team34_TextRPG
 		public int maxHp;
 		public int hp;
 
-		public void Damage(int damage)
+		public virtual void Damage(int damage)
 		{
 			hp -= damage;
 			if (hp < 0)
@@ -74,13 +74,31 @@ namespace Team34_TextRPG
 
 	public class Monster : Character
 	{
-		public Monster(string name, int level, int attack, int hp)
+		Action? onDie;
+		public Monster(string name, int level, int attack, int hp, Action onDie = null)
 		{
 			this.name = name;
 			this.level = level;
 			this.attack = attack;
 			this.maxHp = hp;
 			this.hp = hp;
+			this.onDie = onDie;
 		}
+
+		public Monster DeepCopy()
+		{
+			Monster mst = new Monster(name, level, attack, hp, onDie); 
+			return mst;
+		}
+
+		public override void Damage(int damage)
+		{
+			base.Damage(damage);
+			if (hp == 0)
+			{
+				onDie?.Invoke();
+			}
+		}
+
 	}
 }

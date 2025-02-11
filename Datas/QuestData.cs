@@ -24,7 +24,7 @@ namespace Team34_TextRPG
         {
             this.name = name;
             this.targetCnt = targetCnt;
-            DataManager.instance.tasks.Add(type, this); 
+            DataManager.instance.AddTask(type, this); 
         }
 
         public void AchieveStep()
@@ -33,8 +33,6 @@ namespace Team34_TextRPG
             if (curCnt > targetCnt)
                 curCnt = targetCnt;
         }
-
-
 	}
 
     public class QuestData

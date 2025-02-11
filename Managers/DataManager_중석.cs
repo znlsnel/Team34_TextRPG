@@ -11,7 +11,8 @@ namespace Team34_TextRPG
     public partial class DataManager
     {
         public Dictionary<string, QuestData> quests = new Dictionary<string, QuestData>();
-        public Dictionary<ETaskType, Quest_Task> tasks = new Dictionary<ETaskType, Quest_Task>();
+        Dictionary<ETaskType, Quest_Task> tasks = new Dictionary<ETaskType, Quest_Task>();
+
         public List<QuestData> SelectQuest()
         {
                 List<QuestData> list = new List<QuestData>();
@@ -31,13 +32,13 @@ namespace Team34_TextRPG
                     new List<Quest_Task> { new Quest_Task("미니언 5마리 처치", 5, ETaskType.KillMinion)},
                     new List<Item> { items["청동 도끼"]},
                     500
-                    
                 );
-
-			
-
 		}
-
+        public void AddTask(ETaskType type, Quest_Task task) => tasks.Add(type, task);
+        public void ReportTask(ETaskType type)
+        {
+            tasks[type]?.AchieveStep(); 
+		}
 		public void CreateMainQuest(string name, string dec, List<Quest_Task> tasks, List<Item> items, int gold)
         {
             QuestData quest = new QuestData(name, dec, tasks, items, gold);
