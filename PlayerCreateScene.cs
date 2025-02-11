@@ -70,7 +70,23 @@ namespace Team34_TextRPG
             Console.WriteLine("2. 아니오");
 
 
-            int done = SpartaRPG.SelectOption(1, 2);
+			Dictionary<EClassType, PlayerClass> dic = new Dictionary<EClassType, PlayerClass>();
+            List<PlayerClass> list =new List<PlayerClass>();
+
+            dic.Add(EClassType.WARRIOR, new PlayerClass(EClassType.WARRIOR, 10, 10, 100));
+            dic.Add(EClassType.ARCHER, new PlayerClass(EClassType.ARCHER, 8, 8, 120));
+            dic.Add(EClassType.ROGUE, new PlayerClass(EClassType.ROGUE, 6, 12, 80));
+            dic.Add(EClassType.MAGE, new PlayerClass(EClassType.MAGE, 20, 5, 120));
+
+			int vlaue = 2;
+            if (vlaue == 2)
+            {
+                DataManager.instance.playerData.attack = dic[EClassType.ROGUE].attack;
+                DataManager.instance.playerData.armor = dic[EClassType.ROGUE].armor;
+                DataManager.instance.playerData.classType = dic[EClassType.ROGUE].attack;
+            }
+
+			int done = SpartaRPG.SelectOption(1, 2);
             Town town = new Town();
 
             if (done == 1)
