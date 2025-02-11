@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using Team34_TextRPG;
 
 namespace Team34_TextRPG
 {
@@ -33,25 +34,48 @@ namespace Team34_TextRPG
 			return weapon == item || armor == item;
 		}
 
-		public void EquipItem(Item item)
-		{ 
-			if (item is Weapon)
-			{
-				if (weapon == item)
-					weapon = null;
-				else
-					weapon = item;
-			}
-			else
-			{
-				if (armor == item)
-					armor = null;
-				else
-					armor = item; 
-			}
-		}
+        public void EquipItem(Item item)
+        {
+            PlayerData pd = DataManager.instance.playerData;
+            if (item is Weapon)
+            {
+                if (weapon == item)
+                {
+                    DataManager.instance.ReportTask(ETaskType.EquipItem, -1);
+                    DataManager.instance.ReportTask(ETaskType.EquipWeapon, -1);
+                    pd.attack -= weapon.value;
+                    weapon = null;
+                }
+                else
+                {
+                    DataManager.instance.ReportTask(ETaskType.EquipItem, 1);
+                    DataManager.instance.ReportTask(ETaskType.EquipWeapon, 1);
+                    if(weapon != null)
+                        pd.attack -= weapon.value;
+                    weapon = item;
+                    pd.attack += weapon.value;
+                }
+            }
+            else
+            {
+                if (armor == item)
+                {
+                    DataManager.instance.ReportTask(ETaskType.EquipItem, -1);
+                    pd.defense -= armor.value;
+                    armor = null;
+                }
+                else
+                {
+                    DataManager.instance.ReportTask(ETaskType.EquipItem, 1);
+                    if (armor != null)
+                        pd.defense -= armor.value;
+                    armor = item;
+                    pd.defense += armor.value;
+                }
+            }
+        }
 
-		public void AddItem(Item item)
+        public void AddItem(Item item)
 		{
 			myItems.Add(item.name);
 		}

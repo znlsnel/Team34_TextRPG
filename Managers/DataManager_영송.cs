@@ -12,6 +12,13 @@ namespace Team34_TextRPG
 	{
 		public InventoryData inventory = new InventoryData();
 		public MonsterData monsterData = new MonsterData();
+		public List<Skill> skills = new List<Skill>()
+		{
+			new AlphaStrikeSkill(),
+			new DubleStrikeSkill(),
+			new HeallingSkill()
+		};
+
 		string GetSavePath(string id) => $"TextRPG_{id}";
 
 		public void Savefile()

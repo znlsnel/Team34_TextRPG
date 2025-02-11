@@ -20,10 +20,10 @@ namespace Team34_TextRPG
 			// Stage 1 
 			stages.Add(new Monster[4]
 			{
-				new Monster("미니언", 2, 5, 15),
+				new Monster("미니언", 2, 5, 15, ()=>DataManager.instance.ReportTask(ETaskType.KillMinion)),
 				new Monster("공허충", 3, 7, 20),
-				new Monster("대포미니언", 4, 10, 25),
-				new Monster("슈퍼미니언", 5, 15, 30),
+				new Monster("대포미니언", 4, 10, 25, ()=>DataManager.instance.ReportTask(ETaskType.KillMinion)),
+				new Monster("슈퍼미니언", 5, 15, 30, ()=>DataManager.instance.ReportTask(ETaskType.KillMinion)),
 			});
 
 			// Stage 2 
@@ -54,8 +54,8 @@ namespace Team34_TextRPG
 
 			while (cnt-- > 0)
 			{
-				Monster mst = stages[idx][rand.Next(0, length)];
-				list.Add(new Monster(mst.name, mst.level, mst.attack, mst.hp));
+				Monster mst = stages[idx][rand.Next(0, length)].DeepCopy();
+				list.Add(mst);
 			}
 
 			return list;

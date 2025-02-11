@@ -12,58 +12,51 @@ namespace Team34_TextRPG
 
 	public class Town
 	{
+
 		
-		Scene recovery = new Recovery();
+		
+		Scene status = new PlayerStatus("상태 확인");
 		Scene store = new StoreScene("상점");
 		Scene inventory = new InventoryScene("인벤토리");
-		Scene dungeon = new DungeonScene("ss");
-		Scene status = new PlayerStatus();
-		//while 덮어쓰기 
+		Scene dungeon = new DungeonScene("던전");
+		Scene recovery = new Recovery("회복하기");
+		Scene quest = new QuestScene("퀘스트");
+
+		List<Scene> scenes;
+
+		public Town()
+		{
+			scenes = new List<Scene>()
+			{
+				status,
+				recovery,
+				inventory,
+				store,
+				quest,
+				dungeon,
+			};
+		}
+
 		public void EnterTown()
 		{
-			while (true)
-			{
-				Console.Clear();
-				Console.WriteLine("이곳은 마을 입니다.");
-				Console.WriteLine("아래의 기능중 하나를 선택해 주세요.");
-				Console.WriteLine();
-				Console.WriteLine("1. 상태창");
-				Console.WriteLine("2. 인벤토리");
-				Console.WriteLine("3. 상점");
-				Console.WriteLine("4. 던전");
-				Console.WriteLine("5. Hp 회복");
-				Console.WriteLine();
-				Console.WriteLine("0. 나가기");
+		
+			Console.Clear();
+			Console.WriteLine("이곳은 마을 입니다.");
+			Console.WriteLine("아래의 기능중 하나를 선택해 주세요.");
+			Console.WriteLine();
 
-				int value = SpartaRPG.SelectOption(0, 5);
+			for (int i = 0; i < scenes.Count; i++)
+				Console.WriteLine($"{i + 1}. {scenes[i].GetDIsplayName()}");
 
-				switch (value)
-				{
-					case 0:
-						return;
-					case 1:
-						status.EnterScene();
-						break;
-					case 2:
-						inventory.EnterScene();
-						break;
-					case 3:
-						store.EnterScene();
-						break;
-					case 4:
-						dungeon.EnterScene();
-						break;
-					case 5:
-						recovery.EnterScene();
-						break;
+			Console.WriteLine();
+			Console.WriteLine("0. 나가기");
 
-				}
-				
-				
+			int value = SpartaRPG.SelectOption(0, scenes.Count);
+			if (value == 0)
+				return;
 
-			}
-				
-				
+			scenes[value - 1].EnterScene();
+			EnterTown();
 		}
 
 	}
