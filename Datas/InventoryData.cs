@@ -36,19 +36,24 @@ namespace Team34_TextRPG
 
         public void EquipItem(Item item)
         {
+            PlayerData pd = DataManager.instance.playerData;
             if (item is Weapon)
             {
                 if (weapon == item)
                 {
                     DataManager.instance.ReportTask(ETaskType.EquipItem, -1);
                     DataManager.instance.ReportTask(ETaskType.EquipWeapon, -1);
+                    pd.attack -= weapon.value;
                     weapon = null;
                 }
                 else
                 {
                     DataManager.instance.ReportTask(ETaskType.EquipItem, 1);
                     DataManager.instance.ReportTask(ETaskType.EquipWeapon, 1);
+                    if(weapon != null)
+                        pd.attack -= weapon.value;
                     weapon = item;
+                    pd.attack += weapon.value;
                 }
             }
             else
@@ -56,12 +61,16 @@ namespace Team34_TextRPG
                 if (armor == item)
                 {
                     DataManager.instance.ReportTask(ETaskType.EquipItem, -1);
+                    pd.defense -= armor.value;
                     armor = null;
                 }
                 else
                 {
                     DataManager.instance.ReportTask(ETaskType.EquipItem, 1);
+                    if (armor != null)
+                        pd.defense -= armor.value;
                     armor = item;
+                    pd.defense += armor.value;
                 }
             }
         }
