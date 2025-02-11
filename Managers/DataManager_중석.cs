@@ -10,11 +10,19 @@ namespace Team34_TextRPG
     public partial class DataManager
     {
         public Dictionary<string, Item> items = new Dictionary<string, Item>();
+        public Dictionary<string, Potion> potions = new Dictionary<string, Potion>();
     
         public List<Item> GetItems()
         {
             List<Item> list = new List<Item>();
             foreach (var index in items)
+                list.Add(index.Value);
+            return list;
+        }
+        public List<Potion> GetPotions()
+        {
+            List<Potion> list = new List<Potion>();
+            foreach (var index in potions)
                 list.Add(index.Value);
             return list;
         }
@@ -29,8 +37,12 @@ namespace Team34_TextRPG
             CreateArmor("무쇠갑옷","무쇠로 만들어져 튼튼한 갑옷입니다.",9,2000);
             CreateArmor("스파르타의 갑옷","스파르타의 전사들이 사용했다는 전설의 갑옷입니다.",15,3500);
 
-            CreatePotion("Hp회복 물약", "Hp를 30회복 시켜주는 물약입니다.", 30, 500);
-            CreatePotion("Mp회복 물약", "Mp를 30회복 시켜주는 물약입니다.", 30, 500);
+            InitPotion();
+        }
+        public void InitPotion()
+        {
+            CreatePotion("HpPotion", "Hp를 회복 시켜주는 물약입니다.", 0, 500);
+            CreatePotion("MpPotion", "Mp를 회복 시켜주는 물약입니다.", 0, 500);
         }
 
         //이름 설명 수치 가격
@@ -47,8 +59,8 @@ namespace Team34_TextRPG
 
         public void CreatePotion(string name, string dec, int value, int price)
         {
-            Potion potion = new Potion(name, dec, value,price);
-            items.Add(name, potion);
+            Potion potion = new Potion(name, dec, value, price);
+            potions.Add(name, potion);
         }
     }
 }
