@@ -66,6 +66,10 @@ namespace Team34_TextRPG
 			if (requiredExp[level-1] <= exp)
 			{
 				level++;
+				attack += 3;
+				defense += 3;
+				maxHp += 20;
+				hp += 20;
 				return true;
 			}
 			return false;
