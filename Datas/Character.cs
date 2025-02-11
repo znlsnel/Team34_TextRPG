@@ -27,7 +27,7 @@ namespace Team34_TextRPG
 		public string weapon = "";
 		public string armor = "";
 
-		public PlayerData(string name, int level, EClassType type, int attack, int d, int maxHp, int gold)
+        public PlayerData(string name, int level, EClassType type, int attack, int d, int maxHp, int gold)
 		{
 			this.name = name;
 			this.level = level;

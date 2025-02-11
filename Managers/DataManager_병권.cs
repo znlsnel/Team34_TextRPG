@@ -8,7 +8,7 @@ namespace Team34_TextRPG
 {
     public partial class DataManager
     {
-		
+		public Dictionary<string, Character> status = new Dictionary<string, Character>();
     }
 
 
