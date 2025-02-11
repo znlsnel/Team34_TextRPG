@@ -8,8 +8,10 @@ namespace Team34_TextRPG
 {
 	public abstract class Scene
 	{
-		public string name;
+		string name;
 		public Scene(string name) => this.name = name;
 		public abstract void EnterScene();
+		public virtual string GetDIsplayName() => name;
+
 	}
 }
