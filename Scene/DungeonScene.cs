@@ -10,17 +10,22 @@ namespace Team34_TextRPG
 	{
 		MonsterData monsterData;
 		List<Monster> monsters;
-		static int stage = 1;
+		int stage = 1;
 		int playerStartHp = 0;
+		public override string GetDIsplayName() => $"전투 시작 (현재 진행 : {stage}층)";
 
-		public DungeonScene(string name) : base($"전투 시작 (현재 진행 : {stage}층)")
+		public DungeonScene(string name) : base(name)
 		{
 			monsterData = DataManager.instance.monsterData;
 		}
 
 		public override void EnterScene() 
 		{
-			 monsters = monsterData.GetMonster(stage-1);
+			Console.Clear();
+			SpartaRPG.WriteLine("Battle!!", ConsoleColor.Magenta);
+			Console.WriteLine();
+
+			PlayerData pd = DataManager.instance.playerData;
 			playerStartHp = DataManager.instance.playerData.hp;
 			if (playerStartHp == 0)
 			{
@@ -28,14 +33,19 @@ namespace Team34_TextRPG
 				return;
 			}
 
+			Console.WriteLine("스테이지를 선택해주세요");
+			Console.WriteLine($"{pd.name}님이 입장할 수 있는 스테이지는 [{stage}층] 까지 입니다]");
+			int stg = SpartaRPG.SelectOption(1, stage);
+            monsters = monsterData.GetMonster(stg - 1); 
+
+
 			EnterDungeon();
 		}
 
-		void StageUp() 
+		void MoveToNextStage() 
 		{
 			stage++;
 			stage = Math.Min(stage, monsterData.stages.Count);
-			name = $"전투 시작 (현재 진행 : {stage}층)";
 		}
 
 		void EnterDungeon()
@@ -71,6 +81,12 @@ namespace Team34_TextRPG
 					SelectMonster();
 				else if (value == 2)
 					SelectSkill();
+
+				foreach (Monster mst in monsters)
+				{
+					if (pd.hp > 0 && mst.hp > 0)
+						AttackTarget(mst, pd);
+				}
 			}
 		}
 
@@ -139,17 +155,13 @@ namespace Team34_TextRPG
 					return;
 			}
 
-			StartBattle(pd, monsters[value - 1]);
+			AttackTarget(pd, monsters[value - 1]);
 
-			foreach (Monster mst in monsters)
-			{
-				if (pd.hp > 0 && mst.hp > 0)
-					StartBattle(mst, pd);
-			}
+			
 			
 		}
 		
-		void StartBattle(Character attacker, Character target)
+		void AttackTarget(Character attacker, Character target)
 		{
 			Random rand = new Random();
 			int damage = attacker.attack * rand.Next(90, 110) / 100;
@@ -207,7 +219,7 @@ namespace Team34_TextRPG
 			{
 				Console.WriteLine($"몬스터에서 몬스터 {monsters.Count}마리를 잡았습니다.");
 				Console.WriteLine();
-				StageUp();
+				MoveToNextStage();
 			}
 
 			int total = 0;

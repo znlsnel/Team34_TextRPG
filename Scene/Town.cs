@@ -43,7 +43,7 @@ namespace Team34_TextRPG
 			Console.WriteLine();
 
 			for (int i = 0; i < scenes.Count; i++)
-				Console.WriteLine($"{i + 1}. {scenes[i].name}");
+				Console.WriteLine($"{i + 1}. {scenes[i].GetDIsplayName()}");
 
 			Console.WriteLine();
 			Console.WriteLine("0. 나가기");
