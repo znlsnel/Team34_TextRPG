@@ -22,8 +22,8 @@ namespace Team34_TextRPG
 			{
 				new Monster("미니언", 2, 5, 15, ()=>DataManager.instance.ReportTask(ETaskType.KillMinion)),
 				new Monster("공허충", 3, 7, 20),
-				new Monster("대포미니언", 4, 10, 25),
-				new Monster("슈퍼미니언", 5, 15, 30),
+				new Monster("대포미니언", 4, 10, 25, ()=>DataManager.instance.ReportTask(ETaskType.KillMinion)),
+				new Monster("슈퍼미니언", 5, 15, 30, ()=>DataManager.instance.ReportTask(ETaskType.KillMinion)),
 			});
 
 			// Stage 2 

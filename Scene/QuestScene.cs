@@ -53,14 +53,43 @@ namespace Team34_TextRPG
             Console.WriteLine(quest.description);
 			Console.WriteLine();
 
+            
 			foreach (Quest_Task task in quest.tasks)
             {
                 SpartaRPG.WriteLine($"- {task.name} \t{task.curCnt} / {task.targetCnt}", task.isCompleted ? ConsoleColor.DarkYellow : ConsoleColor.Yellow);
             }
 
-            Console.WriteLine("\n0. 나가기");
-            SpartaRPG.SelectOption();
+            bool questCompleted = quest.IsCompleted();
+            if (questCompleted)
+            {
+				Console.WriteLine("\n1. 보상 받기");
+                foreach (Item reward in quest.items)
+                    Console.WriteLine($"   {reward.name} + 1");
+                Console.WriteLine($"   Gold + {quest.gold}");
 
+				Console.WriteLine("\n0. 나가기");
+				int select = SpartaRPG.SelectOption(0, 1);
+
+                if (select == 0)
+                    return;
+                else
+                {
+                    foreach (Item reward in quest.items)
+                        DataManager.instance.inventory.AddItem(reward);
+                    DataManager.instance.playerData.gold += quest.gold;
+
+                    Console.Clear();
+                    SpartaRPG.WriteLine("[퀘스트 보상]", ConsoleColor.Magenta);
+                    Console.WriteLine("퀘스트 완료 보상을 습득했습니다!");
+                    Console.WriteLine("\n0. 나가기");
+                    SpartaRPG.SelectOption();
+				}
+			}
+            else
+            {
+				Console.WriteLine("\n0. 나가기");
+				SpartaRPG.SelectOption();
+			}
 		}
         
     }

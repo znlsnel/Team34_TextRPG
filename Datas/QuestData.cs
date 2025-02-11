@@ -39,7 +39,6 @@ namespace Team34_TextRPG
     {
         public string name;
         public string description;
-        public bool IsCompleted;
         public int gold;
         
         public List<Quest_Task> tasks;
@@ -49,11 +48,18 @@ namespace Team34_TextRPG
         {
             this.name = name;
             this.description = description;
-            this.IsCompleted = false;
             this.tasks = tasks;
             this.items = items;
             this.gold = gold;
-
 		}
-    }
+		public bool IsCompleted()
+        {
+            foreach (Quest_Task task in tasks)
+                if (task.isCompleted == false)
+                    return false;
+
+            return true;
+        }
+
+	}
 }
