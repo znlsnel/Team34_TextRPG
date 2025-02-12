@@ -60,7 +60,8 @@ namespace Team34_TextRPG
 				Console.WriteLine();
 				Console.WriteLine("0. 나가기");
 				SpartaRPG.SelectOption();
-				return;
+                EnterScene();
+                return;
 			}
 
 			 if (equipMode == false)
@@ -70,8 +71,10 @@ namespace Team34_TextRPG
 
 			int value = SpartaRPG.SelectOption(0, equipMode ? items.Count : 1);
 			if (value == 0)
+			{
+				EnterScene();
 				return;
-
+			}
 			// 장착모드가 false이고 value가 0이 아니라면 장착 모드로 다시 실행
 			if (equipMode == false)
 			{
@@ -101,7 +104,8 @@ namespace Team34_TextRPG
 			
             Console.WriteLine("\n0. 나가기");
 			int value = SpartaRPG.SelectOption(0, 0);
-			return;
+            EnterScene();
+            return;
 
 
 
