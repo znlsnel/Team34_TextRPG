@@ -27,24 +27,23 @@ namespace Team34_TextRPG
         public void CreateClass(string name)
         {
             Console.WriteLine();
-			List<PlayerClass> pc= new List<PlayerClass>();
+			List<PlayerClass> playerClasses= new List<PlayerClass>();
 
-			foreach (var p in DataManager.instance.playerClass)
-                pc.Add(p.Value);
+			foreach (var d in DataManager.instance.playerClass)
+                playerClasses.Add(d.Value);
             
             int cnt = 1;
-             foreach (var cs in pc)
+             foreach (var pc in playerClasses)
 			{
-                string n = DataManager.instance.playerClassName[cs.classType];
-                Console.WriteLine($"{cnt++} {n} \t 공격력 : {cs.attack} \t 방어력 : {cs.armor} \t| 체력 : {cs.health}");
+                string n = DataManager.instance.playerClassName[pc.classType];
+                Console.WriteLine($"{cnt++} {n} \t 공격력 : {pc.attack} \t 방어력 : {pc.armor} \t| 체력 : {pc.health}");
             }
-
 
             Console.WriteLine();
             Console.WriteLine("원하시는 직업을 선택해주세요.");
 
-            int idx = SpartaRPG.SelectOption(1, pc.Count)-1;
-            DataManager.instance.playerData = new PlayerData(name, 1, pc[idx].classType, pc[idx].attack, pc[idx].armor, pc[idx].health, 1000);
+            int idx = SpartaRPG.SelectOption(1, playerClasses.Count)-1;
+            DataManager.instance.playerData = new PlayerData(name, 1, playerClasses[idx].classType, playerClasses[idx].attack, playerClasses[idx].armor, playerClasses[idx].health, 1000);
             Doneplayer();
         }
         // TODO 2번
@@ -62,13 +61,10 @@ namespace Team34_TextRPG
             {
               town.EnterTown();
             }
-
              else
              {
                EnterScene();
              }
-
-
 
             }
     }

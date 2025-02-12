@@ -14,6 +14,7 @@ namespace Team34_TextRPG
 		public MonsterData monsterData = new MonsterData();
 		string GetSavePath(string id) => $"TextRPG_{id}";
 
+		// 직업 정보
 		public Dictionary<EClassType, string> playerClassName = new Dictionary<EClassType, string>()
 		{
 			{ EClassType.MAGE, "마법사"},
@@ -29,6 +30,7 @@ namespace Team34_TextRPG
 			{ EClassType.ROGUE, new PlayerClass(EClassType.ROGUE, 14, 5, 70)},
 			{ EClassType.MAGE, new PlayerClass(EClassType.MAGE, 20, 5, 50)},
 		};
+		//
 
 		public void Savefile()
 		{
