@@ -19,6 +19,7 @@ namespace Team34_TextRPG
 		Lobby lobby = new Lobby();
 		public void GameStart()
 		{
+			Console.CursorVisible = false;
 			CancellationTokenSource cts = new CancellationTokenSource();
 			Task animationTask = asci.RunAnimation(cts.Token);
 			lobby.EnterScene();

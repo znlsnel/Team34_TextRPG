@@ -18,7 +18,7 @@ namespace Team34_TextRPG
 			AsciiArt.instance.PrintAsciiArt("QUEST", ConsoleColor.Yellow);
             Console.WriteLine("[퀘스트]");
 			Console.WriteLine(" ");
-            List<QuestData> quests = DataManager.instance.SelectQuest();
+            List<QuestData> quests = DataManager.instance.GetQuests();
 
             Console.WriteLine("1.퀘스트 목록");
             Console.WriteLine("0.나가기");
