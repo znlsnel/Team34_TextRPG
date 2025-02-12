@@ -95,20 +95,24 @@ namespace Team34_TextRPG
 				Console.WriteLine("2. 스킬 사용");
 				 
 				int value = SpartaRPG.SelectOption(1, 2);
+				bool attack = false;
 				if (value == 1)
-					SelectMonster();
+					attack = SelectMonster();
 				else if (value == 2)
-					SelectSkill();
+					attack = SelectSkill();
 
-				foreach (Monster mst in monsters)
-				{
-					if (pd.hp > 0 && mst.hp > 0)
-						AttackTarget(mst, pd);
+				if (attack) {
+					foreach (Monster mst in monsters)
+					{
+						if (pd.hp > 0 && mst.hp > 0)
+							AttackTarget(mst, pd);
+					}
 				}
+				
 			}
 		}
 
-		void SelectSkill()
+		bool SelectSkill()
 		{
 			PlayerData pd = DataManager.instance.playerData;
 			List<Skill> skills = DataManager.instance.skills;
@@ -130,16 +134,15 @@ namespace Team34_TextRPG
 
 			int value = SpartaRPG.SelectOption(0, skills.Count);
 			if (value == 0)
-				return;
+				return false;
 
 			if (skills[value - 1].mp > pd.mp)
-			{
-				SelectSkill(); 
-				return;
-			}
+				return SelectSkill();
+			
 
 			pd.mp -= skills[value - 1].mp;
 			skills[value - 1].OnSkill(monsters, pd);
+			return true;
 		}
 
 		bool ClearCheck()
@@ -156,7 +159,7 @@ namespace Team34_TextRPG
 
 			return clear;
 		}
-		void SelectMonster()
+		bool SelectMonster()
 		{
 			PlayerData pd = DataManager.instance.playerData;
 
@@ -171,18 +174,18 @@ namespace Team34_TextRPG
 
 			int value = SpartaRPG.SelectOption(0, monsters.Count);
 			if (value == 0)
-				return;
+				return false;
 			
 			while (monsters[value-1].hp <= 0)
 			{
 				Console.WriteLine("\n이미 죽은 몬스터입니다");
 				value = SpartaRPG.SelectOption(0, monsters.Count);
 				if (value == 0)
-					return;
+					return false;
 			}
 
 			AttackTarget(pd, monsters[value - 1]);
-
+			return true;
 			
 			
 		}
@@ -285,7 +288,7 @@ namespace Team34_TextRPG
 			for (int i = 0; i < monsters.Count; i++)
 			{
 				Monster mst = monsters[i];
-				string num = includeNum ? $"{i + 1} " : "";
+				string num = includeNum ? $"{i + 1}. " : "";
 				string HP = mst.hp > 0 ? "HP " + mst.hp : "Dead";
 				SpartaRPG.WriteLine($"{num}Lv.{mst.level} {mst.name} {HP}", mst.hp > 0 ? ConsoleColor.White : ConsoleColor.DarkGray);
 			}
