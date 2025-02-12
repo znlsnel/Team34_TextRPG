@@ -79,6 +79,12 @@ namespace Team34_TextRPG
 		{
 			myItems.Add(item.name);
 		}
+        public void RemoveItem(Item item)
+        {
+            myItems.Remove(item.name);
+        }
+		public int HpPotion = 0;
 
-	}
+		public int MpPotion = 0;
+    }
 }

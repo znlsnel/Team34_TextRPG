@@ -12,6 +12,9 @@ namespace Team34_TextRPG
 
 	public class Town
 	{
+
+		
+		
 		Scene status = new PlayerStatus("상태 확인");
 		Scene store = new StoreScene("상점");
 		Scene inventory = new InventoryScene("인벤토리");

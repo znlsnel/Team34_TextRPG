@@ -38,5 +38,12 @@ namespace Team34_TextRPG
         {
         }
     }
+
+    public class Potion : Item
+    {
+        public Potion(string name, string description, int value,int price) : base(name,description, value, price)
+        {
+        }
+    }
 }
 
