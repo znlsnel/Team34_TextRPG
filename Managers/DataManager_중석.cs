@@ -13,7 +13,7 @@ namespace Team34_TextRPG
         public Dictionary<string, QuestData> quests = new Dictionary<string, QuestData>();
         Dictionary<ETaskType, Quest_Task> tasks = new Dictionary<ETaskType, Quest_Task>();
 
-        public List<QuestData> SelectQuest()
+        public List<QuestData> GetQuests()
         {
                 List<QuestData> list = new List<QuestData>();
                 foreach (var quest in quests)

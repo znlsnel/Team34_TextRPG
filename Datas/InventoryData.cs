@@ -11,8 +11,8 @@ namespace Team34_TextRPG
 	public class InventoryData
 	{
 		HashSet<string> myItems = new HashSet<string>();
-		Item? weapon;
-		Item? armor;
+		public Item? weapon;
+		public Item? armor;
 		 
 		public bool isItemInInventory(Item item)
 		{
@@ -36,6 +36,9 @@ namespace Team34_TextRPG
 
         public void EquipItem(Item item)
         {
+            if (item == null)
+                return;
+
             PlayerData pd = DataManager.instance.playerData;
             if (item is Weapon)
             {
