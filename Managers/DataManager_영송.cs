@@ -14,6 +14,22 @@ namespace Team34_TextRPG
 		public MonsterData monsterData = new MonsterData();
 		string GetSavePath(string id) => $"TextRPG_{id}";
 
+		public Dictionary<EClassType, string> playerClassName = new Dictionary<EClassType, string>()
+		{
+			{ EClassType.MAGE, "마법사"},
+			{EClassType.ROGUE, "도적" },
+			{EClassType.WARRIOR, "전사" },
+			{EClassType.ARCHER, "궁수" },
+			{EClassType.PALADIN, "팔라딘" }
+		};
+		public Dictionary<EClassType, PlayerClass> playerClass = new Dictionary<EClassType, PlayerClass>()
+		{
+			{ EClassType.WARRIOR, new PlayerClass(EClassType.WARRIOR, 10, 10, 100)},
+			{ EClassType.ARCHER, new PlayerClass(EClassType.ARCHER, 12, 8, 80)},
+			{ EClassType.ROGUE, new PlayerClass(EClassType.ROGUE, 14, 5, 70)},
+			{ EClassType.MAGE, new PlayerClass(EClassType.MAGE, 20, 5, 50)},
+		};
+
 		public void Savefile()
 		{
 			// TODO
