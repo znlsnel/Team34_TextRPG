@@ -88,7 +88,7 @@ namespace Team34_TextRPG
 			StoreScene storeScene = new StoreScene("보유 포션");
 			List<Potion> potions = DataManager.instance.GetPotions();
 
-            Console.Clear();
+            SpartaRPG.Clear();
 			Console.ForegroundColor= ConsoleColor.DarkCyan;
             Console.WriteLine("[포션 관리]");
 			Console.ForegroundColor = ConsoleColor.White;
