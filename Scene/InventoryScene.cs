@@ -19,9 +19,11 @@ namespace Team34_TextRPG
 			Console.WriteLine("[아이템 목록]");
 
 			Console.WriteLine("1. 장착 관리");
+            Console.WriteLine("2. 포션 관리");
 			Console.WriteLine("0. 나가기");
-			int value = SpartaRPG.SelectOption(0, 1);
+			int value = SpartaRPG.SelectOption(0, 2);
 			if (value == 1) OpenInventory(); 
+			else if (value == 2) OpenPotionInventory();
 
 		} 
 
@@ -58,7 +60,8 @@ namespace Team34_TextRPG
 				Console.WriteLine();
 				Console.WriteLine("0. 나가기");
 				SpartaRPG.SelectOption();
-				return;
+                EnterScene();
+                return;
 			}
 
 			 if (equipMode == false)
@@ -68,8 +71,10 @@ namespace Team34_TextRPG
 
 			int value = SpartaRPG.SelectOption(0, equipMode ? items.Count : 1);
 			if (value == 0)
+			{
+				EnterScene();
 				return;
-
+			}
 			// 장착모드가 false이고 value가 0이 아니라면 장착 모드로 다시 실행
 			if (equipMode == false)
 			{
@@ -80,6 +85,32 @@ namespace Team34_TextRPG
 			DataManager.instance.inventory.EquipItem(items[value - 1]);
 			OpenInventory(equipMode);
 		}
+		void OpenPotionInventory()
+		{
+
+			StoreScene storeScene = new StoreScene("보유 포션");
+			List<Potion> potions = DataManager.instance.GetPotions();
+
+            SpartaRPG.Clear();
+			Console.ForegroundColor= ConsoleColor.DarkCyan;
+            Console.WriteLine("[포션 관리]");
+			Console.ForegroundColor = ConsoleColor.White;
+			Console.WriteLine();
+            Console.WriteLine("이곳에서 포션보유 개수를 확인 할 수 있습니다..");
+            Console.WriteLine();
+            Console.WriteLine();
+
+			storeScene.ShowPotionList(potions, false, false);
+			
+            Console.WriteLine("\n0. 나가기");
+			int value = SpartaRPG.SelectOption(0, 0);
+            EnterScene();
+            return;
+
+
+
+
+        }
 
 	}
 }
