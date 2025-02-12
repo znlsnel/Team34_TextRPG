@@ -30,15 +30,23 @@ namespace Team34_TextRPG
 		}
 	}
 
+	public class SaveData
+	{
+		public List<string> myItems = new List<string>();
+		public string weapon;
+		public string armor;
+		public int dungeonStage;
+		public List<(string, EQuestState)> _questStates = new List<(string, EQuestState)>();
+		public List<(ETaskType, int)> _taskProgress = new List<(ETaskType, int)>();
+	}
+
 	public class PlayerData : Character
 	{
 		public EClassType classType;
 
 		public int gold;
 
-		public List<string> myItems_saveData = new List<string>();
-		public string weapon_saveData = "";
-		public string armor_saveData = "";
+		public SaveData  saveData = new SaveData();
 
 		public int exp = 0;
 		List<int> requiredExp = new List<int>()
@@ -66,6 +74,10 @@ namespace Team34_TextRPG
 			if (requiredExp[level-1] <= exp)
 			{
 				level++;
+				attack += 3;
+				defense += 3;
+				maxHp += 20;
+				hp += 20;
 				return true;
 			}
 			return false;

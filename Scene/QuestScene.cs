@@ -14,10 +14,11 @@ namespace Team34_TextRPG
 
         public override void EnterScene()
         {
-            Console.Clear();
+			SpartaRPG.Clear();
+			AsciiArt.instance.PrintAsciiArt("QUEST", ConsoleColor.Yellow);
             Console.WriteLine("[퀘스트]");
-            Console.WriteLine(" ");
-            List<QuestData> quests = DataManager.instance.SelectQuest();
+			Console.WriteLine(" ");
+            List<QuestData> quests = DataManager.instance.GetQuests();
 
             Console.WriteLine("1.퀘스트 목록");
             Console.WriteLine("0.나가기");
@@ -33,7 +34,7 @@ namespace Team34_TextRPG
 
         void ShowQuestList(List<QuestData> quests)
         {
-            Console.Clear();
+			SpartaRPG.Clear();
             Console.WriteLine("[퀘스트 목록]\n");
 
             int cnt = 1;
@@ -58,7 +59,7 @@ namespace Team34_TextRPG
 			if (qt != null)
 				qt.curCnt = DataManager.instance.playerData.level;
 
-			Console.Clear();
+			SpartaRPG.Clear();
             string qstate = state == EQuestState.Pending ? "수락 대기" : state == EQuestState.InProgress ? "진행중" : "완료!";
 			ConsoleColor stateColor = state == EQuestState.Pending ? ConsoleColor.Yellow : state == EQuestState.InProgress ? ConsoleColor.Blue : ConsoleColor.Green;
 			SpartaRPG.Write("Quest!!", ConsoleColor.Magenta);
@@ -117,7 +118,7 @@ namespace Team34_TextRPG
 						DataManager.instance.inventory.AddItem(reward);
 					DataManager.instance.playerData.gold += quest.gold;
 
-					Console.Clear();
+					SpartaRPG.Clear();
 					SpartaRPG.WriteLine("[퀘스트 보상]", ConsoleColor.Magenta);
 					Console.WriteLine("퀘스트 완료 보상을 습득했습니다!");
 					Console.WriteLine("\n0. 돌아가기");

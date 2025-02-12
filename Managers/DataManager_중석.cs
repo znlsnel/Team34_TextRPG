@@ -10,16 +10,23 @@ namespace Team34_TextRPG
 {
     public partial class DataManager
     {
+
+        
+        public Dictionary<string, Potion> potions = new Dictionary<string, Potion>();
+    
+        
+
         public Dictionary<string, QuestData> quests = new Dictionary<string, QuestData>();
         Dictionary<ETaskType, Quest_Task> tasks = new Dictionary<ETaskType, Quest_Task>();
 
-        public List<QuestData> SelectQuest()
+        public List<QuestData> GetQuests() 
         {
                 List<QuestData> list = new List<QuestData>();
                 foreach (var quest in quests)
                     list.Add(quest.Value);
                 return list;
         }
+
         public void InitQuest()
         {
             CreateMainQuest(
@@ -90,8 +97,29 @@ namespace Team34_TextRPG
             QuestData quest = new QuestData(name, dec, tasks, items, gold);
             quests.Add(name, quest);
         }
+        public List<Potion> GetPotions()
+        {
+            List<Potion> list = new List<Potion>();
+            foreach (var index in potions)
+                list.Add(index.Value);
+            return list;
+        }
 
+      
+        public void InitPotion()
+        {
+            CreatePotion("HpPotion", "Hp를 회복 시켜주는 물약입니다.", 0, 500);
+            CreatePotion("MpPotion", "Mp를 회복 시켜주는 물약입니다.", 0, 500);
+        }
+        
+
+        public void CreatePotion(string name, string dec, int value, int price)
+        {
+            Potion potion = new Potion(name, dec, value, price);
+            potions.Add(name, potion);
+        }
 
         
+
     }
 }

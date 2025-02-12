@@ -14,9 +14,10 @@ namespace Team34_TextRPG
         {
             PlayerData pd = DataManager.instance.playerData;
 
-            Console.Clear();
+			SpartaRPG.Clear();
+			AsciiArt.instance.PrintAsciiArt("STATUS", ConsoleColor.Red);
             Console.WriteLine("플레이어 상태창");
-            Console.WriteLine("캐릭터 정보가 표시됩니다.");
+			Console.WriteLine("캐릭터 정보가 표시됩니다.");
             Console.WriteLine($"\n이름: {pd.name}");
             Console.WriteLine($"레벨: {pd.level}");
             Console.WriteLine($"직업: {pd.classType}");

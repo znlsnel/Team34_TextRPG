@@ -12,12 +12,16 @@ namespace Team34_TextRPG
 
 	public class Town
 	{
+
+		
+		
 		Scene status = new PlayerStatus("상태 확인");
 		Scene store = new StoreScene("상점");
 		Scene inventory = new InventoryScene("인벤토리");
 		Scene dungeon = new DungeonScene("던전");
 		Scene recovery = new Recovery("회복하기");
 		Scene quest = new QuestScene("퀘스트");
+		Scene saveScene = new SaveScene("저장 및 불러오기");
 
 		List<Scene> scenes;
 
@@ -31,13 +35,15 @@ namespace Team34_TextRPG
 				store,
 				quest,
 				dungeon,
+				saveScene
 			};
 		}
 
 		public void EnterTown()
 		{
 		
-			Console.Clear();
+			SpartaRPG.Clear();
+			AsciiArt.instance.PrintAsciiArt("TOWN", ConsoleColor.Green);
 			Console.WriteLine("이곳은 마을 입니다.");
 			Console.WriteLine("아래의 기능중 하나를 선택해 주세요.");
 			Console.WriteLine();
