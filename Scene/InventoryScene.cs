@@ -11,7 +11,8 @@ namespace Team34_TextRPG
 		public InventoryScene(string name) : base(name){}
 		public override void EnterScene() 
 		{
-			Console.Clear();
+			SpartaRPG.Clear();
+			AsciiArt.instance.PrintAsciiArt("INVENTORY", ConsoleColor.Gray);
 			Console.WriteLine("[인벤토리]");
 			Console.WriteLine("이곳에서 소유중인 아이템을 관리할 수 있습니다.");
 			Console.WriteLine();
@@ -28,7 +29,7 @@ namespace Team34_TextRPG
 
 		void OpenInventory(bool equipMode = false)
 		{
-			Console.Clear();
+			SpartaRPG.Clear();
 			Console.WriteLine("[인벤토리 - 장착관리]");
 			Console.WriteLine("이곳에서 아이템을 장착할 수 있습니다.");
 			Console.WriteLine();

@@ -30,21 +30,31 @@ namespace Team34_TextRPG
 		}
 	}
 
+	public class SaveData
+	{
+		public List<string> myItems = new List<string>();
+		public string weapon;
+		public string armor;
+		public int dungeonStage;
+		public List<(string, EQuestState)> _questStates = new List<(string, EQuestState)>();
+		public List<(ETaskType, int)> _taskProgress = new List<(ETaskType, int)>();
+	}
+
 	public class PlayerData : Character
 	{
 		public EClassType classType;
 
 		public int gold;
+		public int mp;
+		public int maxMp;
 
-		public List<string> myItems_saveData = new List<string>();
-		public string weapon_saveData = "";
-		public string armor_saveData = "";
+		public SaveData  saveData = new SaveData();
 
 		public int exp = 0;
 		List<int> requiredExp = new List<int>()
 		{10, 35, 65, 100, 170, 250, 350, 500, 1000, 1500};
 
-		public PlayerData(string name, int level, EClassType type, int attack, int d, int maxHp, int gold)
+		public PlayerData(string name, EClassType type, int attack, int d, int maxHp, int gold, int mp, int level = 1)
 		{
 			this.name = name;
 			this.level = level;
@@ -54,6 +64,8 @@ namespace Team34_TextRPG
 			this.maxHp = maxHp;
 			this.hp = maxHp;
 			this.gold = gold;
+			this.mp = mp;
+			this.maxMp = mp;
 		}
 		
 		public bool AddExp(int e)

@@ -16,8 +16,12 @@ namespace Team34_TextRPG
 
 		public override void EnterScene()
 		{
+
+			SpartaRPG.Clear();
+			AsciiArt.instance.PrintAsciiArt("STORE", ConsoleColor.Cyan);
+
 			PlayerData pd = DataManager.instance.playerData;
-			Console.Clear();
+
 			Console.WriteLine("[상점]");
 			Console.WriteLine("이곳에서 아이템을 구매할 수 있습니다.");
             Console.WriteLine();
@@ -60,7 +64,7 @@ namespace Team34_TextRPG
 			List<Potion> potions =  DataManager.instance.GetPotions();
 			PlayerData pd =  DataManager.instance.playerData;
 
-			Console.Clear();
+			SpartaRPG.Clear();
 			Console.WriteLine("[상점 - 아이템 구매]");
 			Console.WriteLine("이곳에서 아이템을 구매할 수 있습니다.");
             Console.WriteLine();
@@ -99,7 +103,7 @@ namespace Team34_TextRPG
 		void OnPurchaseFailed(Item item)
 		{
 			PlayerData pd =  DataManager.instance.playerData;
-			Console.Clear();
+			SpartaRPG.Clear();
 			Console.ForegroundColor = ConsoleColor.Red;
 			Console.WriteLine("[아이템 구매 실패]");
 			Console.ForegroundColor = ConsoleColor.White;

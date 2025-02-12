@@ -27,7 +27,7 @@ namespace Team34_TextRPG
 		 
 		public override void OnSkill(List<Monster> monsters, PlayerData pd)
 		{
-			Console.Clear();
+			SpartaRPG.Clear();
 			SpartaRPG.WriteLine($"스킬 {name}을 사용합니다! 몬스터를 선택해주세요", ConsoleColor.Blue);
 			SpartaRPG.WriteLine($"[{desc}]", ConsoleColor.Green);
 			Console.WriteLine();
@@ -43,7 +43,7 @@ namespace Team34_TextRPG
 
 			int prev = list[value - 1].hp;
 			list[value - 1].Damage(pd.attack * 2);
-			Console.Clear();
+			SpartaRPG.Clear();
 			Console.WriteLine($"Lv.{list[value - 1].level} {list[value - 1].name}을(를) 공격했습니다  HP {prev} -> {list[value-1].hp}");
 			Console.WriteLine("\n0. 돌아가기");
 
@@ -62,7 +62,7 @@ namespace Team34_TextRPG
 
 		public override void OnSkill(List<Monster> monsters, PlayerData pd)
 		{
-			Console.Clear();
+			SpartaRPG.Clear();
 			SpartaRPG.WriteLine($"스킬 {name}을 사용합니다!", ConsoleColor.Blue);
 			SpartaRPG.WriteLine($"[{desc}]", ConsoleColor.Green);
 			Console.WriteLine();
@@ -85,7 +85,7 @@ namespace Team34_TextRPG
 			Console.WriteLine("\n1. 스킬 사용");
 			SpartaRPG.SelectOption(1, 1);
 
-			Console.Clear();
+			SpartaRPG.Clear();
 			foreach (int i in idxs)
 			{
 				int hp = monsters[i].hp;
@@ -109,7 +109,7 @@ namespace Team34_TextRPG
 
 		public override void OnSkill(List<Monster> monsters, PlayerData pd)
 		{
-			Console.Clear();
+			SpartaRPG.Clear();
 			SpartaRPG.WriteLine($"스킬 {name}을 사용합니다!", ConsoleColor.Blue);
 			SpartaRPG.WriteLine($"[{desc}]", ConsoleColor.Green);
 			Console.WriteLine();
@@ -120,7 +120,7 @@ namespace Team34_TextRPG
 			int hp = pd.hp;
 			pd.Heal(pd.maxHp / 5);
 
-			Console.Clear();
+			SpartaRPG.Clear();
 			Console.WriteLine("체력을 회복합니다!");
 			Console.WriteLine($"{pd.name} HP {hp} -> {pd.hp}"); 
 			

@@ -14,9 +14,10 @@ namespace Team34_TextRPG
         {
             PlayerData pd = DataManager.instance.playerData;
 
-            Console.Clear();
+			SpartaRPG.Clear();
+			AsciiArt.instance.PrintAsciiArt("RECOVERY", ConsoleColor.Blue);
             Console.WriteLine("회복");
-            Console.WriteLine("포션을 사용하면 체력 30 회복할수있습니다.");
+			Console.WriteLine("포션을 사용하면 체력 30 회복할수있습니다.");
             Console.WriteLine($"최대체력: {pd.maxHp}");
             Console.WriteLine($"현재체력: {pd.hp}");
 
