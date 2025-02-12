@@ -26,7 +26,7 @@ namespace Team34_TextRPG
 			List<Potion> potions = DataManager.instance.GetPotions();
             List<Item> items = DataManager.instance.GetItems();
 			ShowItemList(items, false);
-			ShowPotionList(potions, false);
+			ShowPotionList(potions, false, false);
 
 			
 			Console.WriteLine();
@@ -152,7 +152,7 @@ namespace Team34_TextRPG
 			Console.ForegroundColor= ConsoleColor.White;
 		}
 
-        void ShowPotionList(List<Potion> potions, bool showNum)
+        public void ShowPotionList(List<Potion> potions, bool showNum ,bool showPrice)
         {
             Console.WriteLine();
             Console.WriteLine("[포션 목록]");
@@ -168,9 +168,10 @@ namespace Team34_TextRPG
 					potioncnt = DataManager.instance.inventory.MpPotion;
 				}
 
-                // 아이템 이름, 아이템 수치, 아이템 설명, [가격 - 구매 완료]
+				// 아이템 이름, 아이템 수치, 아이템 설명, [가격 - 구매 완료]
+				string priceprice = showPrice ? ($"{price}") : "";
 
-                Console.WriteLine($"{num} {potion.name} \t| {"보유 개수"} : {potioncnt} \t| {potion.description} \t| {price}");
+                Console.WriteLine($"{num} {potion.name} \t| {"보유 개수"} : {potioncnt} \t| {potion.description} \t| {priceprice}");
 				
 
             }
@@ -230,7 +231,7 @@ namespace Team34_TextRPG
             Console.WriteLine();
             Console.WriteLine("[보유 골드]");
             Console.WriteLine($"{pd.gold}");
-            ShowPotionList(potions, true);
+            ShowPotionList(potions, true, true);
             Console.WriteLine("\n0. 나가기");
             int value = SpartaRPG.SelectOption(0, potions.Count);
 
