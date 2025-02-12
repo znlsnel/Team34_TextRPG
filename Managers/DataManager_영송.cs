@@ -20,7 +20,7 @@ namespace Team34_TextRPG
 			new HeallingSkill()
 		};
 
-		string GetSavePath(string id) => $"TextRPG_{id}";
+		string GetSavePath(string id) => $"TextRPG_{id}.json";
 
 		List<Quest_Task> GetTasks()
 		{

@@ -18,6 +18,7 @@ namespace Team34_TextRPG
 		Scene dungeon = new DungeonScene("던전");
 		Scene recovery = new Recovery("회복하기");
 		Scene quest = new QuestScene("퀘스트");
+		Scene saveScene = new SaveScene("저장 및 불러오기");
 
 		List<Scene> scenes;
 
@@ -31,6 +32,7 @@ namespace Team34_TextRPG
 				store,
 				quest,
 				dungeon,
+				saveScene
 			};
 		}
 
