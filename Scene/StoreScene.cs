@@ -187,7 +187,7 @@ namespace Team34_TextRPG
             List<Item> owneditems = DataManager.instance.inventory.GetMyItems();
             PlayerData pd = DataManager.instance.playerData;
 
-            Console.Clear();
+            SpartaRPG.Clear();
             Console.WriteLine("[상점 - 아이템 판매]");
             Console.WriteLine("이곳에서 보유한 아이템을 판매할 수 있습니다.");
             Console.WriteLine();
@@ -214,7 +214,7 @@ namespace Team34_TextRPG
             pd.gold += sellPrice; 
             DataManager.instance.inventory.RemoveItem(item); 
 
-            Console.Clear();
+            SpartaRPG.Clear();
             Console.WriteLine($"[아이템 판매 완료]");
 			Console.WriteLine($" {item.name}을(를) {sellPrice} G에 판매하였습니다.");
             Console.WriteLine("\n0. 계속하기");
@@ -229,7 +229,7 @@ namespace Team34_TextRPG
             List<Potion> potions = DataManager.instance.GetPotions();
             PlayerData pd = DataManager.instance.playerData;
 
-            Console.Clear();
+            SpartaRPG.Clear();
             Console.WriteLine("[상점 - 아이템 구매]");
             Console.WriteLine("이곳에서 아이템을 구매할 수 있습니다.");
             Console.WriteLine();
@@ -254,7 +254,7 @@ namespace Team34_TextRPG
 			if(value == 2)
 			DataManager.instance.inventory.MpPotion += 1;
 
-			Console.Clear();
+			SpartaRPG.Clear();
             Console.WriteLine("[포션 구매 완료~!]");
             Console.WriteLine($"{potion.name}을 구매 하셨습니다.");
             Console.WriteLine("\n0. 계속하기");
@@ -265,7 +265,7 @@ namespace Team34_TextRPG
         void OnPotionFailed(Potion potion)
         {
             PlayerData pd = DataManager.instance.playerData;
-            Console.Clear();
+            SpartaRPG.Clear();
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("[아이템 구매 실패]");
             Console.ForegroundColor = ConsoleColor.White;
