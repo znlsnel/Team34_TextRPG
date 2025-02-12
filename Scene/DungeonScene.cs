@@ -12,6 +12,7 @@ namespace Team34_TextRPG
 		MonsterData monsterData;
 		List<Monster> monsters;
 		int playerStartHp = 0;
+		int curStage = 0;
 		public override string GetDIsplayName() => $"전투 시작 (현재 진행 : {DataManager.instance.dungeonStage}층)";
 
 		public DungeonScene(string name) : base(name)
@@ -35,10 +36,22 @@ namespace Team34_TextRPG
 				return;
 			}
 
+			int stage = DataManager.instance.dungeonStage;
 			Console.WriteLine("스테이지를 선택해주세요");
-			Console.WriteLine($"{pd.name}님이 입장할 수 있는 스테이지는 [{DataManager.instance.dungeonStage}층] 까지 입니다]");
-			int stg = SpartaRPG.SelectOption(1, DataManager.instance.dungeonStage);
-            monsters = monsterData.GetMonster(stg - 1); 
+			Console.WriteLine($"{pd.name}님이 입장할 수 있는 스테이지는 [{DataManager.instance.dungeonStage}층] 까지 입니다");
+			Console.WriteLine();
+
+			for (int i = 1; i <= stage; i++)
+                Console.WriteLine($"{i}. {i}층");
+
+			Console.WriteLine("\n0. 나가기");
+
+			stage = SpartaRPG.SelectOption(0, DataManager.instance.dungeonStage);
+			if (stage == 0)
+				return;
+
+			curStage = stage - 1;
+			monsters = monsterData.GetMonster(curStage); 
 
 
 			EnterDungeon();
@@ -46,6 +59,9 @@ namespace Team34_TextRPG
 
 		void MoveToNextStage(ref int stage) 
 		{
+			if (curStage < DataManager.instance.dungeonStage - 1)
+				return;
+
 			stage++;
 			stage = Math.Min(stage, monsterData.stages.Count);
 		}
