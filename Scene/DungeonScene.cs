@@ -122,7 +122,8 @@ namespace Team34_TextRPG
 			Console.WriteLine();
 			for (int i = 0; i <  skills.Count; i++) 
 			{
-				SpartaRPG.WriteLine($"{i + 1}. {skills[i].name} - MP {skills[i].mp}", ConsoleColor.Green);
+				bool hasMp = skills[i].mp <= pd.mp;
+				SpartaRPG.WriteLine($"{i + 1}. {skills[i].name} - MP {skills[i].mp}", hasMp ? ConsoleColor.Green : ConsoleColor.DarkGray);
 				Console.WriteLine($"   {skills[i].desc}");
 			}
 			Console.WriteLine("0. 나가기");
@@ -131,6 +132,13 @@ namespace Team34_TextRPG
 			if (value == 0)
 				return;
 
+			if (skills[value - 1].mp > pd.mp)
+			{
+				SelectSkill(); 
+				return;
+			}
+
+			pd.mp -= skills[value - 1].mp;
 			skills[value - 1].OnSkill(monsters, pd);
 		}
 
@@ -288,6 +296,7 @@ namespace Team34_TextRPG
 			SpartaRPG.WriteLine("\n\n[내정보]", ConsoleColor.Yellow);
 			Console.WriteLine($"Lv. {pd.level}\t{pd.name}");
 			Console.WriteLine($"HP {pd.hp}/{pd.maxHp}");
+			Console.WriteLine($"MP {pd.mp}/{pd.maxMp}");
 		}
 	}
 }
