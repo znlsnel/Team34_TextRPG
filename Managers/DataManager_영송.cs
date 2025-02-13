@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Newtonsoft.Json;
 
 
@@ -19,6 +21,17 @@ namespace Team34_TextRPG
 			new DubleStrikeSkill(),
 			new HeallingSkill()
 		};
+		Dictionary<EClassType, PlayerClass> playerClasses = new Dictionary<EClassType, PlayerClass>();
+
+		public PlayerClass GetPlayerClass(EClassType type) => playerClasses[type];
+		public List<PlayerClass> GetPlayerClasses()
+		{
+			List<PlayerClass> list = new List<PlayerClass>();
+			foreach (var p in playerClasses)
+				list.Add(p.Value);
+			return list;
+		}
+
 
 		string GetSavePath(string id) => $"TextRPG_{id}.json";
 
@@ -58,7 +71,6 @@ namespace Team34_TextRPG
 			string json = JsonConvert.SerializeObject(playerData);
 			File.WriteAllText(GetSavePath(playerData.name), json);
 		} 
-
 		public bool LoadFile(string id)
 		{
 			string path = GetSavePath(id);
@@ -100,6 +112,19 @@ namespace Team34_TextRPG
 			dungeonStage = playerData.saveData.dungeonStage;
 
 			return true;
+		}
+
+		void InitPlayerClass()
+		{
+			CreatePlayerClass(EClassType.PALADIN, "팔라딘", 7, 12, 240, 50);
+			CreatePlayerClass(EClassType.WARRIOR, "전사", 10, 10, 200, 30);
+			CreatePlayerClass(EClassType.ARCHER, "궁수", 15, 8, 140, 40);
+			CreatePlayerClass(EClassType.ROGUE, "도적", 12, 8, 160, 50);
+			CreatePlayerClass(EClassType.MAGE, "법사", 20, 5, 100, 100);
+		}
+		void CreatePlayerClass(EClassType type, string name, int att, int arm, int hp, int mp)
+		{
+			playerClasses.Add(type, new PlayerClass(type, name, att, arm, hp, mp));
 		}
 	}
 }

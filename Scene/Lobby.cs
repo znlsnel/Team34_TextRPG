@@ -9,6 +9,7 @@ namespace Team34_TextRPG
 	public class Lobby : Scene
 	{
 		Town town = new Town();
+		NewGameScene newgame = new NewGameScene("새게임");
 		public Lobby() : base("로비"){}
 		
 		public override void EnterScene()
@@ -30,7 +31,7 @@ namespace Team34_TextRPG
 			switch(value)
 			{
 				case 1: // 캐릭터 생성씬과 연결
-					town.EnterTown();
+					newgame.EnterScene();
 					break;
 				case 2:
 					LoadData();

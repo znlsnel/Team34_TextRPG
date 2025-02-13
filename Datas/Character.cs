@@ -54,7 +54,7 @@ namespace Team34_TextRPG
 		List<int> requiredExp = new List<int>()
 		{10, 35, 65, 100, 170, 250, 350, 500, 1000, 1500};
 
-		public PlayerData(string name, EClassType type, int attack, int d, int maxHp, int gold, int mp, int level = 1)
+		public PlayerData(string name, EClassType type, int attack, int d, int maxHp,  int mp, int gold = 10000, int level = 1)
 		{
 			this.name = name;
 			this.level = level;

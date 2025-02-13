@@ -70,5 +70,18 @@ namespace Team34_TextRPG
 			Console.Clear();
             Console.WriteLine("\n\n\n\n\n");
         }
+
+		public static void pendingStr(ref string str, int length)
+		{
+			foreach (char c in str)
+				if (c >= 0xAC00 && c <= 0xD7A3)
+					length--;
+
+
+			while (str.Length < length)
+				str += " ";
+
+			
+		}
 	}
 }
