@@ -134,11 +134,15 @@ namespace Team34_TextRPG
 				if (item is Weapon) type = "공격력";
 				else if (item is Armor) type = "방어력";
 				else if (item is Potion) type = "보유 개수";
-                // 아이템 이름, 아이템 수치, 아이템 설명, [가격 - 구매 완료]
+				// 아이템 이름, 아이템 수치, 아이템 설명, [가격 - 구매 완료]
 
+				string name = item.name;
+				string desc = item.description;
 
+				SpartaRPG.pendingStr(ref name, 15);
+				SpartaRPG.pendingStr(ref desc, 50);
 
-                if (isOwnedItem)
+				if (isOwnedItem)
                 {
                     Console.ForegroundColor = ConsoleColor.Green; 
                 }
@@ -147,7 +151,7 @@ namespace Team34_TextRPG
                     Console.ForegroundColor = ConsoleColor.White; 
                 }
 
-                Console.WriteLine($"{num} {item.name} \t| {type} +{item.value} \t| {item.description} \t| {price}");
+                Console.WriteLine($"{num} {name} \t| {type} +{item.value} \t| {desc} \t| {price}");
 
 
 

@@ -116,11 +116,11 @@ namespace Team34_TextRPG
 
 		void InitPlayerClass()
 		{
-			CreatePlayerClass(EClassType.PALADIN, "팔라딘", 7, 12, 120, 50);
-			CreatePlayerClass(EClassType.WARRIOR, "전사", 10, 10, 100, 30);
-			CreatePlayerClass(EClassType.ARCHER, "궁수", 15, 8, 70, 40);
-			CreatePlayerClass(EClassType.ROGUE, "도적", 12, 8, 80, 50);
-			CreatePlayerClass(EClassType.MAGE, "법사", 20, 5, 50, 100);
+			CreatePlayerClass(EClassType.PALADIN, "팔라딘", 7, 12, 240, 50);
+			CreatePlayerClass(EClassType.WARRIOR, "전사", 10, 10, 200, 30);
+			CreatePlayerClass(EClassType.ARCHER, "궁수", 15, 8, 140, 40);
+			CreatePlayerClass(EClassType.ROGUE, "도적", 12, 8, 160, 50);
+			CreatePlayerClass(EClassType.MAGE, "법사", 20, 5, 100, 100);
 		}
 		void CreatePlayerClass(EClassType type, string name, int att, int arm, int hp, int mp)
 		{

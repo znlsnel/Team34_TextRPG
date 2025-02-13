@@ -45,9 +45,15 @@ namespace Team34_TextRPG
 				bool isEquipped = inventory.IsEquipped(item);
 				string equip = isEquipped ? "[E]" : "";
 
+				string name = equip+item.name;
+				string desc = item.description;
+
+				SpartaRPG.pendingStr(ref name, 13);
+				SpartaRPG.pendingStr(ref desc, 50);
+
 				// 장착중인 아이템은 초록색으로 표시
 				if (isEquipped) Console.ForegroundColor = ConsoleColor.Green;
-				Console.WriteLine($"-{num}{equip} {item.name} \t| {(item is Weapon ? "공격력" : "방어력")} +{item.value} \t| {item.description} \t");
+				Console.WriteLine($"-{num}{name} \t| {(item is Weapon ? "공격력" : "방어력")} +{item.value} \t| {desc} \t");
 				 
 				// 다시 하얀 글씨로 돌아오기
 				Console.ForegroundColor = ConsoleColor.White;

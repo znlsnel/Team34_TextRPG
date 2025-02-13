@@ -47,7 +47,7 @@ namespace Team34_TextRPG
 
 			bool isHpFull = pd.hp == pd.maxHp;
             bool noPotion = id.HpPotion == 0;
-			Console.WriteLine("[실패]");
+			Console.WriteLine("[HP 포션]");
 
 			if (isHpFull)
 				Console.WriteLine("이미 체력이 회복된 상태입니다.");
@@ -78,7 +78,8 @@ namespace Team34_TextRPG
 
 			bool isMpFull = pd.mp == pd.maxMp;
 			bool noPotion = id.MpPotion == 0;
-			Console.WriteLine("[실패]");
+			Console.WriteLine("[MP 포션]");
+
 
 			if (isMpFull)
 				Console.WriteLine("이미 마나가 회복된 상태입니다.");
