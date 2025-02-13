@@ -15,8 +15,9 @@ namespace Team34_TextRPG
 	public class SpartaRPG
 	{
 		AsciiArt asci = new AsciiArt();
-		DataManager dataManager = new DataManager();
+
 		Lobby lobby = new Lobby();
+		DataManager dataManager = new DataManager();
 		public void GameStart()
 		{
 			Console.CursorVisible = false;
@@ -33,7 +34,7 @@ namespace Team34_TextRPG
 			string str;
 			bool isNumeric;
 			int ret;
-			
+
 
 			while (true)
 			{
@@ -41,14 +42,15 @@ namespace Team34_TextRPG
 				{
 					ConsoleKeyInfo keyInfo = Console.ReadKey(intercept: true);
 					isNumeric = keyInfo.KeyChar >= '0' && keyInfo.KeyChar <= '9';
-					ret = isNumeric ? int.Parse(keyInfo.KeyChar.ToString()) : min -1;
+					ret = isNumeric ? int.Parse(keyInfo.KeyChar.ToString()) : min - 1;
 
 					// 조건에 부합하는 수를 입력받은 경우 반복문 종료
 					if (isNumeric && ret >= min && ret <= max)
 						break;
+
+					return ret;
 				}
 			}
-			return ret;
 		}
 
 		public static void WriteLine(string str, ConsoleColor color)

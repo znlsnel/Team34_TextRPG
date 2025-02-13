@@ -30,6 +30,25 @@ namespace Team34_TextRPG
 			return list;
 		}
 
+		// 직업 정보
+		public Dictionary<EClassType, string> playerClassName = new Dictionary<EClassType, string>()
+		{
+			{ EClassType.MAGE, "마법사"},
+			{EClassType.ROGUE, "도적" },
+			{EClassType.WARRIOR, "전사" },
+			{EClassType.ARCHER, "궁수" },
+			{EClassType.PALADIN, "팔라딘" }
+		};
+		public Dictionary<EClassType, PlayerClass> playerClass = new Dictionary<EClassType, PlayerClass>()
+		{
+			{EClassType.WARRIOR, new PlayerClass(EClassType.WARRIOR, 10, 10, 200)},
+			{EClassType.ARCHER, new PlayerClass(EClassType.ARCHER, 12, 7, 150)},
+			{EClassType.ROGUE, new PlayerClass(EClassType.ROGUE, 7, 12, 170)},
+			{EClassType.MAGE, new PlayerClass(EClassType.MAGE, 20, 5, 120)},
+			{EClassType.PALADIN, new PlayerClass(EClassType.PALADIN, 11, 8, 140)},
+		};
+		//
+
 		public void Savefile()
 		{
 			// 소유중인 아이템 저장
