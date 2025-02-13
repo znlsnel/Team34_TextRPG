@@ -14,10 +14,10 @@ namespace Team34_TextRPG
      
 	public class SpartaRPG
 	{
+		DataManager dataManager = new DataManager();
 		AsciiArt asci = new AsciiArt();
 
 		Lobby lobby = new Lobby();
-		DataManager dataManager = new DataManager();
 		public void GameStart()
 		{
 			Console.CursorVisible = false;
@@ -51,6 +51,7 @@ namespace Team34_TextRPG
 					return ret;
 				}
 			}
+			return ret;
 		}
 
 		public static void WriteLine(string str, ConsoleColor color)

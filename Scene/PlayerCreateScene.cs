@@ -16,7 +16,7 @@ namespace Team34_TextRPG
 
         public override void EnterScene()
         {
-            Console.Clear();
+
             Console.WriteLine("스파르타 던전에 오신 여러분 환영합니다.");
             Console.WriteLine("\n원하시는 이름을 설정해주세요.");
             Console.Write(">> ");
