@@ -36,7 +36,7 @@ namespace Team34_TextRPG
              foreach (var pc in playerClasses)
 			{
                 string n = DataManager.instance.playerClassName[pc.classType];
-                Console.WriteLine($"{cnt++} {n} \t 공격력 : {pc.attack} \t 방어력 : {pc.armor} \t| 체력 : {pc.health}");
+                Console.WriteLine($"{cnt++} {n} - 공격력 : {pc.attack} \t 방어력 : {pc.armor} \t| 체력 : {pc.health}");
             }
 
             Console.WriteLine();
@@ -50,10 +50,12 @@ namespace Team34_TextRPG
         public void Doneplayer()
         {
 
-            Console.Clear();
-            Console.WriteLine("캐릭터 생성이 완료되었습니다.");
-			Console.WriteLine("1. 마을로 가기");
-            Console.WriteLine("0. 나가기");
+            Console.WriteLine();
+            Console.WriteLine("캐릭터를 생성하였습니다.");
+            Console.WriteLine("\n이대로 진행하시겠습니까?");
+            Console.WriteLine();
+            Console.WriteLine("1. 예");
+            Console.WriteLine("2. 다시 생성하기");
             int done = SpartaRPG.SelectOption(1, 2);
             Town town = new Town();
 

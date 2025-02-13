@@ -25,10 +25,11 @@ namespace Team34_TextRPG
 		};
 		public Dictionary<EClassType, PlayerClass> playerClass = new Dictionary<EClassType, PlayerClass>()
 		{
-			{ EClassType.WARRIOR, new PlayerClass(EClassType.WARRIOR, 10, 10, 100)},
-			{ EClassType.ARCHER, new PlayerClass(EClassType.ARCHER, 12, 8, 80)},
-			{ EClassType.ROGUE, new PlayerClass(EClassType.ROGUE, 14, 5, 70)},
-			{ EClassType.MAGE, new PlayerClass(EClassType.MAGE, 20, 5, 50)},
+			{EClassType.WARRIOR, new PlayerClass(EClassType.WARRIOR, 10, 10, 200)},
+			{EClassType.ARCHER, new PlayerClass(EClassType.ARCHER, 12, 7, 150)},
+			{EClassType.ROGUE, new PlayerClass(EClassType.ROGUE, 7, 12, 170)},
+			{EClassType.MAGE, new PlayerClass(EClassType.MAGE, 20, 5, 120)},
+			{EClassType.PALADIN, new PlayerClass(EClassType.PALADIN, 11, 8, 140)},
 		};
 		//
 
