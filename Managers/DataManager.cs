@@ -27,6 +27,7 @@ namespace Team34_TextRPG
             if (instance == null)
                     instance = this;
 
+			InitPlayerClass();
 			InitPotion();
 			InitItem();
             InitQuest();
